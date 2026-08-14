@@ -1,0 +1,53 @@
+@use 'mlut' with (
+	$jit: (
+		'output': 'dist/assets/style/style.min.css',
+		'content': ['src/**/*.ejs','src/**/*.json','src/assets/script/**/*.js'],
+		'minify': true
+	),
+);
+
+a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-touch-callout: none;
+
+}
+
+html {
+	--ml-brand: #f0438c;
+	--ml-brand100: rgba(239, 67, 139, 0.30);
+	--ml-brand200: #E62677;
+	--ml-brand500: #C92369;
+	--ml-brand600: #EF438B;
+	--ml-core100: #120C24;
+	--ml-core900: rgba(0, 0, 0, 1);
+	--ml-accent100: #441E6D;
+	--ml-accent900: rgba(255, 255, 255, 1);
+	--ml-decor10: rgba(47, 23, 84, 1);
+	--ml-decor20: rgba(47, 27, 72, 1);
+	--ml-decor30: #6863C2;
+	--ml-decor40: #553288;
+	--ml-decor50: #B83A6E;
+	--ml-decor60: #2F1C47;
+	--ml-decor70: #23113A;
+	--ml-decor80: #26133F;
+	--ml-decor90: #1E0D35;
+	--ml-decor100: #5F529D;
+	--ml-decor110: #A773A0;
+	--ml-decor120: #AF3573;
+	--ml-decor130: #513E72;
+	--ml-gradient10: #4D5588;
+	--ml-gradient20: #121455;
+	--ml-gradient30: #0C061A;
+}
+
+.decorM {
+	font-size: clamp(1.25rem, 0.6432rem + 2.589vw, 3.75rem);
+}
+
+.decorS {
+	font-size: clamp(0.75rem, 0.3859rem + 1.5534vw, 2.25rem);
+}
+
+.logoSize {
+	font-size: clamp(9.625rem, 4.9678rem + 19.8706vw, 28.8125rem);
+}
