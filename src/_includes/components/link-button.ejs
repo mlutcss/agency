@@ -1,31 +1,32 @@
 <%
-	const buttonShape = "-Sz100p D-f Jc-c Ai-c Gap2.5u Fns4u xl_Fns5u Lnh100p Lts0 Fnst-n Fnw400 Bdrd8 -Ts Bd2;s;#EF438B";
+	const css = {
+		buttonShape: '-Sz100p D-f Jc-c Ai-c Gap2.5u Fns4u xl_Fns5u Lnh100p Lts0 Fnst-n Fnw400 Bdrd8 -Ts Bd2;s;#EF438B',
+		buttonColors: '',
+		padding: ''
+	};
 
-    let buttonColors;
-	let padding;
 	if (it.variant === 'brand') {
-		buttonColors = "Bgc-$brand600 Bgc-$brand200_h Bgc-$brand500_a";
-		padding = "P4u";
-	}
-	if (it.variant === 'light') {
-		buttonColors = "Bgc-n Bgc-$brand100_h Bgc-$brand600_a";
-		padding = "P3u";
+		css.buttonColors = "Bgc-$brand600 Bgc-$brand200_h Bgc-$brand500_a";
+		css.padding = "P4u";
+	} else {
+		css.buttonColors = "Bgc-n Bgc-$brand100_h Bgc-$brand600_a";
+		css.padding = "P3u";
 	}
 
 	const isLink = it.url && it.url !== '#0';
-	const tag = isLink ? 'a' : 'button';
+	const tag = it.tag || 'a';
 	const className = it.className || '';
 	const iconClass = it.iconClass || 'W24 H24';
 %>
 
 <<%= tag %>
-	class="btn C-$accent900 <%= buttonShape %> <%= buttonColors %> <%= padding %> <%= className %>"
+	class="btn C-$accent900 <%= css.buttonShape %> <%= css.buttonColors %> <%= css.padding %> <%= className %>"
 	<%= isLink ? `href=${it.url}` : '' %>
 	<%= tag === 'button' ? 'type="button"' : '' %>
 >
-	<span class="button-text"><%= it.text %></span>
+	<%= it.text %>
 	<% if (it.icon) { %>
-		<svg class="button-icon <%= iconClass %>" width="24" height="24">
+		<svg class=" <%= iconClass %>" width="24" height="24">
 			<use href="/assets/img/icons.svg#<%= it.icon %>"></use>
 		</svg>
 	<% } %>

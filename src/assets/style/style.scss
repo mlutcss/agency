@@ -9,7 +9,6 @@
 a {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-touch-callout: none;
-
 }
 
 html {
@@ -19,6 +18,7 @@ html {
 	--ml-brand500: #C92369;
 	--ml-brand600: #EF438B;
 	--ml-core100: #120C24;
+	--ml-core110: #1F1A2B;
 	--ml-core900: rgba(0, 0, 0, 1);
 	--ml-accent100: #441E6D;
 	--ml-accent900: rgba(255, 255, 255, 1);
@@ -38,6 +38,9 @@ html {
 	--ml-gradient10: #4D5588;
 	--ml-gradient20: #121455;
 	--ml-gradient30: #0C061A;
+	--ml-gradient40: #826FC3;
+	--ml-gradient50: rgba(96, 82, 144, 0.35);
+	--ml-gradient60: rgba(239, 67, 139, 0.20);
 }
 
 .decorM {
@@ -50,4 +53,24 @@ html {
 
 .logoSize {
 	font-size: clamp(9.625rem, 4.9678rem + 19.8706vw, 28.8125rem);
+}
+
+.scroll-track {
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.scroll-track::-webkit-scrollbar {
+	display: none;
+}
+
+.scroll-slide {
+	scroll-snap-align: center;
+}
+
+.gradient-text {
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
