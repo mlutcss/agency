@@ -1,0 +1,32 @@
+<%
+	let cssHeaderLogoVisibility = "Vs-v O1"
+	if (it.area === "main"){
+		cssHeaderLogoVisibility = "Vs-h O0"
+	}
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>mlut agency</title>
+		<link rel="stylesheet" href="/assets/style/style.min.css">
+		<link rel="icon" href="/assets/img/favicon.png?v=1" type="image/x-icon">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+	</head>
+	<body class="Fnf-Inter -HeaderH10.5u md_-HeaderH23u D-f Fld-c Bgc-$core100">
+		<%- include('../_includes/header/header.ejs', {
+			cssHeaderLogoVisibility: cssHeaderLogoVisibility
+		}) %>
+
+		<main>
+			<%- it.content %>
+		</main>
+
+		<script src="/assets/script/toggleLogo.js" type="module"></script>
+	</body>
+</html>
