@@ -62,7 +62,14 @@ html {
 	-ms-overflow-style: none;
 }
 
-.scroll-track::-webkit-scrollbar {
+.process-track {
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.scroll-track::-webkit-scrollbar,
+.process-track::-webkit-scrollbar {
 	display: none;
 }
 
@@ -73,4 +80,121 @@ html {
 .gradient-text {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+@keyframes wave-mobile {
+	0% { transform: translateY(0) scaleY(1); }
+	12.5% { transform: translateY(-5px) scaleY(1.1); }
+	25% { transform: translateY(5px) scaleY(0.9); }
+	37.5% { transform: translateY(-5px) scaleY(1.05); }
+	50% { transform: translateY(0) scaleY(1); }
+
+	62.5% { transform: translateY(-5px) scaleY(1.1); }
+	75% { transform: translateY(5px) scaleY(0.9); }
+	87.5% { transform: translateY(-5px) scaleY(1.05); }
+	100% { transform: translateY(0) scaleY(1); }
+}
+
+
+@keyframes wave {
+	0% { transform: translateY(0) scaleY(1); }
+	5% { transform: translateY(-5px) scaleY(1.1); }
+	10% { transform: translateY(5px) scaleY(0.9); }
+	15% { transform: translateY(-5px) scaleY(1.05); }
+	20% { transform: translateY(0) scaleY(1); }
+
+	25% { transform: translateY(-5px) scaleY(1.1); }
+	30% { transform: translateY(5px) scaleY(0.9); }
+	35% { transform: translateY(-5px) scaleY(1.05); }
+	40% { transform: translateY(0) scaleY(1); }
+
+	45% { transform: translateY(-5px) scaleY(1.1); }
+	50% { transform: translateY(5px) scaleY(0.9); }
+	55% { transform: translateY(-5px) scaleY(1.05); }
+	60% { transform: translateY(0) scaleY(1); }
+
+	65% { transform: translateY(-5px) scaleY(1.1); }
+	70% { transform: translateY(5px) scaleY(0.9); }
+	75% { transform: translateY(-5px) scaleY(1.05); }
+	80% { transform: translateY(0) scaleY(1); }
+
+	85% { transform: translateY(-5px) scaleY(1.1); }
+	90% { transform: translateY(5px) scaleY(0.9); }
+	95% { transform: translateY(-5px) scaleY(1.05); }
+	100% { transform: translateY(0) scaleY(1); }
+}
+
+.an-wave {
+	animation-timeline: view(inline);
+	animation-range: entry 0% exit 100%;
+	will-change: transform;
+}
+
+@keyframes back-wave-mobile {
+	0% { transform: translateY(0) scaleY(1); }
+	12.5% { transform: translateY(3px) scaleY(1.1); }
+	25% { transform: translateY(-3px) scaleY(0.9); }
+	37.5% { transform: translateY(3px) scaleY(1.05); }
+	50% { transform: translateY(0) scaleY(1); }
+
+	62.5% { transform: translateY(3px) scaleY(1.1); }
+	75% { transform: translateY(-3px) scaleY(0.9); }
+	87.5% { transform: translateY(3px) scaleY(1.05); }
+	100% { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes back-wave {
+	0% { transform: translateY(0) scaleY(1); }
+	5% { transform: translateY(3px) scaleY(1.1); }
+	10% { transform: translateY(-3px) scaleY(0.9); }
+	15% { transform: translateY(3px) scaleY(1.05); }
+	20% { transform: translateY(0) scaleY(1); }
+
+	25% { transform: translateY(3px) scaleY(1.1); }
+	30% { transform: translateY(-3px) scaleY(0.9); }
+	35% { transform: translateY(3px) scaleY(1.05); }
+	40% { transform: translateY(0) scaleY(1); }
+
+	45% { transform: translateY(3px) scaleY(1.1); }
+	50% { transform: translateY(-3px) scaleY(0.9); }
+	55% { transform: translateY(3px) scaleY(1.05); }
+	60% { transform: translateY(0) scaleY(1); }
+
+	65% { transform: translateY(3px) scaleY(1.1); }
+	70% { transform: translateY(-3px) scaleY(0.9); }
+	75% { transform: translateY(3px) scaleY(1.05); }
+	80% { transform: translateY(0) scaleY(1); }
+
+	85% { transform: translateY(3px) scaleY(1.1); }
+	90% { transform: translateY(-3px) scaleY(0.9); }
+	95% { transform: translateY(3px) scaleY(1.05); }
+	100% { transform: translateY(0) scaleY(1); }
+}
+
+.an-wave-back {
+	animation-timeline: view(inline);
+	animation-range: entry 0% exit 100%;
+	will-change: transform;
+}
+
+@supports not (animation-timeline: view()) {
+	.an-wave {
+		animation: wave 12s linear infinite;
+	}
+	.an-wave {
+		animation: wave-mobile 12s linear infinite;
+	}
+	.an-wave-back {
+		animation: back-wave 12s linear infinite;
+	}
+	.an-wave-back {
+		animation: back-wave-mobile 12s linear infinite;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.an-wave,
+	.an-wave-back {
+		animation: none;
+	}
 }

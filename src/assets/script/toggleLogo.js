@@ -27,6 +27,4 @@ function createObserver() {
 	observer.observe(heroSection);
 }
 
-if (heroSection) {
-	createObserver();
-}
+createObserver();
