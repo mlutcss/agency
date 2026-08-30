@@ -1,38 +1,30 @@
 <%
-	const css = {
+	const stylesCss = {
 		width: '',
 		height: '',
 		fill: ''
 	}
 
 	if (it.name === "X") {
-		css.width = "24";
-		css.height = "24";
+		stylesCss.width = "24";
+		stylesCss.height = "24";
 	} else if (it.name === 'Github') {
-		css.width = "26";
-		css.height = "26";
+		stylesCss.width = "26";
+		stylesCss.height = "26";
 	} else {
-		css.width = "28";
-		css.height = "28";
+		stylesCss.width = "28";
+		stylesCss.height = "28";
 	}
 
 	if (it.icon === 'telegram' || it.icon === 'mail') {
-		css.fill = ''
+		stylesCss.fill = ''
 	} else {
-		css.fill = 'Fi-$accent900 Fio1 ^logo:h:_Fi-$brand -Ts'
+		stylesCss.fill = 'Fi-$accent900 Fio1 ^logo:h:_Fi-$brand -Ts'
 	}
 %>
 
-<a
-	href="<%= it.link %>"
-	target="_blank"
-	class="-Ctx-logo Ps W100p D-f Jc-c Ai-c"
->
-	<svg
-		class="<%= css.fill %>"
-		width="<%= css.width %>"
-		height="<%= css.height %>"
-	>
+<a href="<%= it.link %>" target="_blank" class="-Ctx-logo Ps W100p D-f Jc-c Ai-c">
+	<svg class="<%= stylesCss.fill %>" width="<%= stylesCss.width %>" height="<%= stylesCss.height %>">
 		<use href="/assets/img/icons.svg#<%= it.icon %>"></use>
 	</svg>
 </a>

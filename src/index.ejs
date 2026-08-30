@@ -27,10 +27,10 @@ area: 'main'
 		</div>
 		<div class="Ps-a W62p T6p R15p Apcr4/3 Bdrd2u -Gdl180d,$decor60;0p,$decor70;100p Ps-a_af Ct_af W11p_af Apcr1_af T16p_af R24p_af Bdrd100p_af Bgc-$decor120_af">
 			<svg class="Ps-a W100p H56p T50p L50p Tf -Tr-50p;-70p">
-				<use href="/assets/img/icons.svg#dasharray"></use>
+				<use href="assets/img/icons.svg#dasharray"></use>
 			</svg>
 			<svg class="Ps-a W100p H35p T50p L50p Tf -Tr-50p;-70p">
-				<use href="/assets/img/icons.svg#chart"></use>
+				<use href="assets/img/icons.svg#chart"></use>
 			</svg>
 			<% for (let circle of css.circles) { %>
 				<div class="Ps-a Apcr1 Bdrd100p Bdw1u sm_Bdw1.25u md_Bdw2u Bds-s <%= circle %>"></div>
@@ -39,21 +39,21 @@ area: 'main'
 		<div class="Ps-a W12p T6p R77p H70p Bdrd2u -Gdl180d,$decor80;0p,$decor90;100p"></div>
 		<div class="D-f Jc-c Ai-c Ps-a W20p Apcr3/2 T22p L0 Bdrd2u Bgc-$decor60 Ps-a_af Ct_af W12p_af Apcr1_af T10p_af R10p_af Bdrd100p_af Bdw0.5u_af sm_Bdw1u_af Bds-s_af Bdc-$decor100_af">
 			<svg class="Ps-a W100p H70p T50p L50p Tf -Tr-50p;-50p">
-				<use href="/assets/img/icons.svg#dasharray2"></use>
+				<use href="assets/img/icons.svg#dasharray2"></use>
 			</svg>
 			<span class="C-$accent900 decorM">M</span>
 		</div>
 		<div class="Ps-a W20p Apcr2/1 T54p L0 Bdrd2u Bgc-$decor60">
 			<svg class="Ps-a W80p H36p T10p L10p">
-				<use href="/assets/img/icons.svg#slider1"></use>
+				<use href="assets/img/icons.svg#slider1"></use>
 			</svg>
 			<svg class="Ps-a W80p H36p T53p L10p">
-				<use href="/assets/img/icons.svg#slider2"></use>
+				<use href="assets/img/icons.svg#slider2"></use>
 			</svg>
 		</div>
 		<div class="Ps-a W26p Apcr1 T60p L56p Bdrd2u Bgc-$decor60">
 			<svg class="Ps-a W50p H23p T10p R8p">
-				<use href="/assets/img/icons.svg#dasharray3"></use>
+				<use href="assets/img/icons.svg#dasharray3"></use>
 			</svg>
 			<span class="Ps-a T10p md_T14p lg_T10p L10p C-$accent900 decorS">+/-</span>
 			<% for (let line of css.lines) { %>
@@ -89,7 +89,8 @@ area: 'main'
 					title: `${card.title}`,
 					img: `${card.img}`,
 					text: `${card.text}`,
-					size: `${card.sizeImg}`
+					width: `${card.width}`,
+					height: `${card.height}`
 					})
 				%>
 			</li>
@@ -97,3 +98,270 @@ area: 'main'
 	</ul>
 </section>
 
+<%# Product-section %>
+<section id="product-section" class="D-f Fld-c Gap3u P5u;4u;10u md_P15u lg_Gap10u xl_P20u xxl_P20u;25u">
+	<h2 class="M0 P2.5u;0 Fns6u Fnw-n Lnh-n Fnst-n C-$accent900 md_Fns8u xxl_Fns11u">Наш продукт</h2>
+
+	<div class="D-f Fld-c lg_D-g lg_Gtc2fr;3fr lg_Clmg32u xxl_Clmg42u">
+		<div class="D-f Jc-sb Ai-st Gap6u W100p md_Ai-c lg_Gc1 lg_Gr1 lg_Fld-c lg_Gap4u lg_Ai-st lg_Fls0">
+			<img src="assets/img/logo_mlut.svg" class="W70 sm_W120 md_W166 H-a Fls0"/>
+			<p class="M0 Fns4u Lnh-n Fnst-n sm_Fns5u C-$accent900 lg_P2.5u;0">CSS-фреймворк — аналог Tailwind для верстки сайтов с индивидуальным дизайном.</p>
+		</div>
+		<div class="W100p Mt7u As-c sm_W80p md_W267 lg_Gc1 lg_Gr2 lg_Mt-a">
+			<%- include('_includes/components/link-button.ejs',{
+				url:"https://mlut.style",
+				text: "Перейти на сайт mlut",
+				variant: "light"
+				})
+			%>
+		</div>
+		<div class="D-f Fld-c Gap3u Mt10u W100p sm_Gap4u lg_Gc2 lg_Gr1/3 lg_Mt0 Mnw0">
+			<span class="M0 Fns4u Lnh-n Fnst-n C-$accent900 sm_Fns5u lg_D-n">Что о нас пишут:</span>
+			<ul class="D-f Ai-c Gap4u -All-sr Ovx-s Scb-s scroll-track Mr-4u Pr4u md_Mr-15u xl_Mr-20u xxl_Mr-25u">
+				<% for (let card of it.product) { %>
+					<li class="Fls0 scroll-slide">
+						<%- include('_includes/components/card-product.ejs',{
+							url: `${card.link}`,
+							img: `${card.img}`
+							})
+						%>
+					</li>
+				<% } %>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<%# Team-section %>
+<section id="team-section" class="Ps D-f Fld-c Gap3u md_Gap5u lg_Gap10u W100p md_P15u xl_P20u xxl_P20u;25u">
+	<div class="Ps-a Zi-1 T-5p L50p W100p H45p Bdrd20u Tf -Tr-50p;0 -Gdrd90p;90p;at;50p;100p,$gradient10;41p,$gradient20;73p,$gradient30;100p Ft -Blr125"></div>
+	<h2 class="M0 P2.5u Fns6u Fnw-n Lnh-n Fnst-n C-$accent900 Txa-c md_Fns8u xxl_Fns11u">Наша команда</h2>
+
+	<scroll-carousel class="W100p P5u;4u;10u D-f Jc-sb Ai-c Gap2u md_P0">
+		<button class="btn prev C-$accent900 md_C-$brand_h C-$brand500_a Fls0 O0 -Ts">
+			<svg class="W40 H40">
+				<use href="/assets/img/icons.svg#arrow"></use>
+			</svg>
+		</button>
+		<ul class="scroll-track D-f Ai-fs Gap5u xxl_Gap12u -All-sr Ovx-s">
+			<% for (let card of it.team) { %>
+				<li class="scroll-slide D-f">
+					<%- include('_includes/components/card-profile.ejs',{
+						name: `${card.name}`,
+						img: `${card.img}`,
+						profession: `${card.profession}`,
+						description: `${card.description}`,
+						connection: `${card.connection}`
+						})
+					%>
+				</li>
+			<% } %>
+		</ul>
+		<button class="btn next C-$accent900 md_C-$brand_h C-$brand500_a Tf -Rt180d Fls0 -Ts">
+			<svg class="W40 H40">
+				<use href="/assets/img/icons.svg#arrow"></use>
+			</svg>
+		</button>
+	</scroll-carousel>
+</section>
+
+<%
+	const firstStep = [
+		{ src: 'Ellipse35', styles: 'T16p L9p md_T5p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse36', styles: 'T20p L15p md_T9p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse37', styles: 'T20p L11p md_T11p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse38', styles: 'T30p L10p md_T24p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse39', styles: 'T34p L8p md_T31p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse65', styles: 'T41p L8p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse66', styles: 'T41p L11p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse67', styles: 'T41p L10p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse68', styles: 'T41p L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse69', styles: 'T40p L8p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+	];
+
+	const secondStep = [
+		{ src: 'Ellipse40', styles: 'T19p L9p md_T8p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse41', styles: 'T20p L15p md_T9p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse42', styles: 'T21p L11p md_T13p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse43', styles: 'T28p L10p md_T24p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse44', styles: 'T34p L8p md_T31p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse70', styles: 'T41p L8p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse71', styles: 'T41p L12p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse72', styles: 'T41p L10p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse73', styles: 'T41p L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse74', styles: 'T40p L8p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+	];
+
+	const thirdStep = [
+		{ src: 'Ellipse45', styles: 'T16p L9p md_T6p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse46', styles: 'T20p L12p md_T9p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse47', styles: 'T20p L5p md_T10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse48', styles: 'T30p L10p md_T24p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse49', styles: 'T34p L8p md_T32p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse75', styles: 'T40p L9p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse76', styles: 'T41p L12p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse77', styles: 'T41p L10p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse78', styles: 'T41p L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse79', styles: 'T40p L8p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+	];
+
+	const fourthStep = [
+		{ src: 'Ellipse50', styles: 'T19p L9p md_T9p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse51', styles: 'T18p L11p md_T9p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse52', styles: 'T23p L8p md_T16p md_L6p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse53', styles: 'T29p L10p md_T24p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse54', styles: 'T34p L8p md_T32p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse80', styles: 'T40p L8p md_L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse81', styles: 'T41p L12p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse82', styles: 'T41p L10p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse83', styles: 'T41p L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse84', styles: 'T40p L8p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+	];
+
+	const fifthStep = [
+		{ src: 'Ellipse55', styles: 'T18p L9p md_T5p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse56', styles: 'T18p L11p md_T9p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse57', styles: 'T23p L8p md_T14p md_L6p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse58', styles: 'T30p L10p md_T21p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse90', styles: 'T34p L8p md_T32p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse85', styles: 'T41p L8p md_L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse86', styles: 'T41p L12p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse87', styles: 'T41p L10p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse88', styles: 'T41p L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse89', styles: 'T40p L8p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+	];
+
+	const sixthStep = [
+		{ src: 'Ellipse60', styles: 'T19p L9p md_T10p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse61', styles: 'T18p L11p md_T9p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse62', styles: 'T26p L8p md_T20p md_L6p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse63', styles: 'T30p L10p md_T21p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse64', styles: 'T34p L8p md_T32p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse91', styles: 'T41p L8p md_L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse91', styles: 'T41p L12p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse93', styles: 'T41p L10p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+		{ src: 'Ellipse94', styles: 'T41p L10p', animation: 'Ann-wave-mobile xxl_Ann-wave Antf-l Anfm-bt an-wave' },
+		{ src: 'Ellipse95', styles: 'T40p L8p', animation: 'Ann-back-wave-mobile xxl_Ann-back-wave Antf-l Anfm-bt an-wave-back' },
+	];
+%>
+
+<%# Process-section %>
+<process-scroll class="D-f Fld-c Gap2.5u W100p P5u;4u md_Gap10u md_P0;0;0;15u xl_P0;0;0;20u xxl_P0;0;0;25u">
+	<h2 class="M0 P2.5u;0 Fns6u Fnw-n Lnh-n Fnst-n C-$accent900 md_Fns8u xxl_Fns11u">Как мы работаем</h2>
+
+	<ul class="track -All-sr D-f Ai-c Jc-st Gap2u Ovx-s process-track Mr-4u md_M0">
+		<li class="Ps D-f W300 md_W460 Mnh330 md_Mnh353 Fls0">
+			<% for (let img of firstStep) { %>
+				<div class="Ps-a W100p <%= img.styles %>">
+					<img
+						src="assets/img/arcs/first_step/<%= img.src %>.svg"
+						class="W100p H-a <%= img.animation %>"
+					/>
+				</div>
+			<% } %>
+
+			<div class="Ps Mt37p md_Mt24p W90p D-f Fld-c Ai-st Gap11u W100p C-$accent900">
+				<img src="assets/img/arcs/dot_anm.svg" class="-Sz48 md_-Sz68"/>
+				<div class="Ml2u D-f Fld-c Ai-st Gap2.5u">
+					<span class="Fns4.5u Fnw700 md_Mxw60p md_Fns6u">Анализ на начальном этапе</span>
+					<p class="M0">Проводим аудит текущего положения дел по чеклисту продукта на ранней стадии</p>
+				</div>
+			</div>
+		</li>
+		<li class="Ps D-f W300 md_W460 Mnh330 md_Mnh353 Fls0">
+			<% for (let img of secondStep) { %>
+				<div class="Ps-a W100p <%= img.styles %>">
+					<img
+						src="assets/img/arcs/second_step/<%= img.src %>.svg"
+						class="W100p H-a <%= img.animation %>"
+					/>
+				</div>
+			<% } %>
+
+			<div class="Ps Mt37p md_Mt24p W90p D-f Fld-c Ai-st Gap11u W100p C-$accent900">
+				<img src="assets/img/arcs/dot_anm.svg" class="-Sz48 md_-Sz68"/>
+				<div class="Ml2u D-f Fld-c Ai-st Gap2.5u">
+					<span class="Fns4.5u Fnw700 md_Mxw60p md_Fns6u">План</span>
+					<p class="M0">Составляем подробный план действий</p>
+				</div>
+			</div>
+		</li>
+		<li class="Ps D-f W300 md_W460 Mnh330 md_Mnh353 Fls0">
+			<% for (let img of thirdStep) { %>
+				<div class="Ps-a W100p <%= img.styles %>">
+					<img
+						src="assets/img/arcs/third_step/<%= img.src %>.svg"
+						class="W100p H-a <%= img.animation %>"
+					/>
+				</div>
+			<% } %>
+
+			<div class="Ps Mt37p md_Mt24p W90p D-f Fld-c Ai-st Gap11u W100p C-$accent900">
+				<img src="assets/img/arcs/dot_anm.svg" class="-Sz48 md_-Sz68"/>
+				<div class="Ml2u D-f Fld-c Ai-st Gap2.5u">
+					<span class="Fns4.5u Fnw700 md_Mxw60p md_Fns6u">Договор</span>
+					<p class="M0">Берем символический платеж ~100$ для закрепления сотрудничества и подписываем договор </p>
+				</div>
+			</div>
+		</li>
+		<li class="Ps D-f W300 md_W460 Mnh330 md_Mnh353 Fls0">
+			<% for (let img of fourthStep) { %>
+				<div class="Ps-a W100p <%= img.styles %>">
+					<img
+						src="assets/img/arcs/fourth_step/<%= img.src %>.svg"
+						class="W100p H-a <%= img.animation %>"
+					/>
+				</div>
+			<% } %>
+
+			<div class="Ps Mt37p md_Mt24p W90p D-f Fld-c Ai-st Gap11u W100p C-$accent900">
+				<img src="assets/img/arcs/dot_anm.svg" class="-Sz48 md_-Sz68"/>
+				<div class="Ml2u D-f Fld-c Ai-st Gap2.5u">
+					<span class="Fns4.5u Fnw700 md_Mxw60p md_Fns6u">Продающий сайт</span>
+					<p class="M0">Создаем продающий сайт с индивидуальным дизайном</p>
+				</div>
+			</div>
+		</li>
+		<li class="Ps D-f W300 md_W460 Mnh330 md_Mnh353 Fls0">
+			<% for (let img of fifthStep) { %>
+				<div class="Ps-a W100p <%= img.styles %>">
+					<img
+						src="assets/img/arcs/fifth_step/<%= img.src %>.svg"
+						class="W100p H-a <%= img.animation %>"
+					/>
+				</div>
+			<% } %>
+
+			<div class="Ps Mt37p md_Mt24p W90p D-f Fld-c Ai-st Gap11u W100p C-$accent900">
+				<img src="assets/img/arcs/dot_anm.svg" class="-Sz48 md_-Sz68"/>
+				<div class="Ml2u D-f Fld-c Ai-st Gap2.5u">
+					<span class="Fns4.5u Fnw700 md_Mxw60p md_Fns6u">Доводим до конца</span>
+					<p class="M0">Помогаем клиенту закрыть оставшиеся пункты чеклиста</p>
+				</div>
+			</div>
+		</li>
+		<li class="Ps D-f W300 md_W460 Mnh330 md_Mnh353 Fls0">
+			<% for (let img of sixthStep) { %>
+				<div class="Ps-a W100p <%= img.styles %>">
+					<img
+						src="assets/img/arcs/sixth_step/<%= img.src %>.svg"
+						class="W100p H-a <%= img.animation %>"
+					/>
+				</div>
+			<% } %>
+
+			<div class="Ps-a T0 R0 W75p H85p -Gdl90d,tp;0p,$core100;70p;100p Ps-a_af Ct_af T0_af R-74p_af W75p_af H100p_af Bgc-$core100_af"></div>
+			<div class="Ps Mt37p md_Mt24p W90p D-f Fld-c Ai-st Gap11u W100p C-$accent900">
+				<img src="assets/img/arcs/dot_anm.svg" class="-Sz48 md_-Sz68"/>
+				<div class="Ml2u D-f Fld-c Ai-st Gap2.5u">
+					<span class="Fns4.5u Fnw700 md_Mxw60p md_Fns6u">Поиск финансирования</span>
+					<p class="M0">При необходимости, помогаем клиенту с получением инвестиций/грантов/пилотов с корпорациями</p>
+				</div>
+			</div>
+		</li>
+	</ul>
+</process-scroll>
+
+<script src="/assets/script/profile-card.js" type="module"></script>
+<script src="/assets/script/scroll-carousel.js" type="module"></script>
+<script src="/assets/script/process-scroll.js" type="module"></script>
