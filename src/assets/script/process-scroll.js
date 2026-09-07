@@ -14,7 +14,7 @@ class processScroll extends HTMLElement {
 
 			if (canScrollLeft || canScrollRight) {
 				e.preventDefault();
-				const speed = 2;
+				const speed = 2.5;
 				this.track.scrollBy({ left: deltaY * speed, behavior: 'smooth' });
 			}
 		}, { passive: false });

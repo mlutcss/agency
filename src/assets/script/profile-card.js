@@ -14,7 +14,7 @@ class ProfileCard extends HTMLElement {
 		const btnText = this.button.textContent;
 		const newText = btnText === 'Свернуть' ? 'Подробнее' : 'Свернуть';
 		this.button.textContent = newText;
-		this.classList.toggle('no-js');
+		this.classList.toggle('no-expanded');
 	}
 }
 

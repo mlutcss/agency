@@ -1,30 +1,30 @@
 <%
-	const stylesCss = {
+	const iconStyles = {
 		width: '',
 		height: '',
 		fill: ''
 	}
 
 	if (it.name === "X") {
-		stylesCss.width = "24";
-		stylesCss.height = "24";
+		iconStyles.width = "24";
+		iconStyles.height = "24";
 	} else if (it.name === 'Github') {
-		stylesCss.width = "26";
-		stylesCss.height = "26";
+		iconStyles.width = "26";
+		iconStyles.height = "26";
 	} else {
-		stylesCss.width = "28";
-		stylesCss.height = "28";
+		iconStyles.width = "28";
+		iconStyles.height = "28";
 	}
 
 	if (it.icon === 'telegram' || it.icon === 'mail') {
-		stylesCss.fill = ''
+		iconStyles.fill = ''
 	} else {
-		stylesCss.fill = 'Fi-$accent900 Fio1 ^logo:h:_Fi-$brand -Ts'
+		iconStyles.fill = 'Fi-$accent900 Fio1 ^logo:h:_Fi-$brand -Ts'
 	}
 %>
 
 <a href="<%= it.link %>" target="_blank" class="-Ctx-logo Ps W100p D-f Jc-c Ai-c">
-	<svg class="<%= stylesCss.fill %>" width="<%= stylesCss.width %>" height="<%= stylesCss.height %>">
+	<svg class="<%= iconStyles.fill %>" width="<%= iconStyles.width %>" height="<%= iconStyles.height %>">
 		<use href="/assets/img/icons.svg#<%= it.icon %>"></use>
 	</svg>
 </a>
