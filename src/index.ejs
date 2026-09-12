@@ -4,7 +4,7 @@ area: 'main'
 ---
 
 <%
-	const css = {
+	const decor = {
 		dots: ['L-15p Bgc-$decor30', 'L50p Tf -Tr-50p;0 Bgc-$decor40', 'R-15p Bgc-$decor50'],
 		circles: ['W6p T7.5p L7.5p Bdc-$decor100', 'W6p T63.5p L7.5p Bdc-$decor100', 'W6p T63.5p L86.5p Bdc-$decor100', 'W8p T6.5p L85.5p Bdc-$decor110'],
 		lines: ['T42p L10p W40p', 'T51p L10p W40p', 'T76p L10p W58p', 'T85p L10p W58p']
@@ -21,7 +21,7 @@ area: 'main'
 	<%# Decor %>
 	<div class="Ps D-n md_D Mt4.5u W85p Apcr3/2 lg_W100p lg_M0 lg_Gc2 lg_Gr1/4 xxl_H100p">
 		<div class="Ps-a T0 R2p W10p Apcr1/4.5 Bdrd2u -Gdl180d,$decor10;0p,$decor20;100p">
-			<% for (let dot of css.dots) {%>
+			<% for (let dot of decor.dots) {%>
 				<div class="Ps-a W30p Apcr1 Bdrd100p T15p <%= dot %>"></div>
 			<% } %>
 		</div>
@@ -32,7 +32,7 @@ area: 'main'
 			<svg class="Ps-a W100p H35p T50p L50p Tf -Tr-50p;-70p">
 				<use href="assets/img/icons.svg#chart"></use>
 			</svg>
-			<% for (let circle of css.circles) { %>
+			<% for (let circle of decor.circles) { %>
 				<div class="Ps-a Apcr1 Bdrd100p Bdw1u sm_Bdw1.25u md_Bdw2u Bds-s <%= circle %>"></div>
 			<% } %>
 		</div>
@@ -56,7 +56,7 @@ area: 'main'
 				<use href="assets/img/icons.svg#dasharray3"></use>
 			</svg>
 			<span class="Ps-a T10p md_T14p lg_T10p L10p C-$accent900 decorS">+/-</span>
-			<% for (let line of css.lines) { %>
+			<% for (let line of decor.lines) { %>
 				<div class="Ps-a <%= line %> H4p Bdrd2u Bgc-$decor130"></div>
 			<% } %>
 			<div class="Ps-a W20p Apcr1 T72p L71p Bdrd100p Bgc-$decor130"></div>
@@ -182,6 +182,78 @@ area: 'main'
 	</ul>
 </process-scroll>
 
+<%
+	const total = it.questions.length;
+	const half = Math.ceil(total / 2);
+	const firstCol = it.questions.slice(0, half);
+	const secondCol = it.questions.slice(half);
+%>
+
+<%# faq-section %>
+<section id="faq-section" class="Ps W100p D-f Fld-c Ai-c Gap3u P5u;4u;10u md_Gap10u md_P15u xl_P20u xxl_P20u;25u">
+	<div class="Ps-a Zi-1 W90p H20p md_H25p xxl_H40p L50p T-5p Tf -Tr-50p;0 Bdrd20u -Gdrd90p;90p;at;50p;100p,$gradient10;41p,$gradient20;73p,$gradient30;100p Ft -Blr125"></div>
+	<h2 class="Ps M0 P2.5u Fns6u Fnw-n Lnh-n Fnst-n C-$accent900 Txa-c md_Fns8u xxl_Fns11u">FAQ</h2>
+	<div class="Ps D-f Fld-c Gap4u W100p lg_Fld-r lg_Gap5u lg_Ai-fs xxl_Gap6u">
+		<ul class="D-f Fld-c Gap4u -All-sr W100p Cor-step lg_Gap6u">
+			<% firstCol.forEach((question) => { %>
+			<li class="W100p">
+				<%- include('_includes/components/card-question.ejs',{
+					title: question.title,
+					text: question.text
+				}) %>
+			</li>
+			<% }); %>
+		</ul>
+
+		<ul class="D-f Fld-c Gap4u -All-sr W100p Cor-n lg_Gap6u">
+			<% secondCol.forEach((question) => { %>
+			<li class="W100p">
+				<%- include('_includes/components/card-question.ejs',{
+					title: question.title,
+					text: question.text
+				}) %>
+			</li>
+			<% }); %>
+		</ul>
+	</div>
+</section>
+
+
+<%
+	const startStyles = {
+		blurG: 'Ps-a L0 W100p H6p md_H12p Bgc-$decor140 Ft -Blr15',
+		blurV: 'Ps-a W12p H100p T0 Bgc-$decor140 Ft -Blr35'
+	};
+%>
+<%# start-section %>
+<section class="Ps W100p D-f Fld-c Ai-c P5u;0;10u md_P10u;0;15u xxl_P20u;0;20u">
+	<div class="Ps D-f Fld-c Ai-c Fns4u Fnw400 Lnh-n Fnst-n C-$accent900">
+		<span>Мы не делаем просто сайт,</span>
+		<div class="D-f Fld-c Ai-c sm_Fld-r">
+			<span class="sm_Fns6u md_Fns8u xxl_Fns11u sm_Mr2u md_Mr2.5u">мы переводим на</span>
+			<span class="Fns6u md_Fns8u xxl_Fns11u C-$brand600">следующий уровень</span>
+		</div>
+	</div>
+	<div class="Ps Zi-1 W100p D-f Fld-c Ai-c">
+		<div class="<%= startStyles.blurG %> T-1p md_T1p"></div>
+		<div class="<%= startStyles.blurG %> B-1p md_B-4p"></div>
+		<div class="D-n md_D <%= startStyles.blurV %> L0"></div>
+		<div class="D-n md_D <%= startStyles.blurV %> R0"></div>
+		<img src="assets/img/rocket2.svg" class="md_D-n Mt2u W100p H-a"/>
+		<img src="assets/img/rocket.svg" class="D-n md_D Mt6u W80p H-a"/>
+	</div>
+	<div class="Ps Zi1 W90p sm_W80p md_Mxw267 Mt7u">
+		<%- include('_includes/components/link-button.ejs',{
+			url:"#0",
+			text: "Оставить заявку",
+			variant: "brand"
+			})
+		%>
+	</div>
+	<div class="Ps-a W100p md_W50p xxl_W35p H17p sm_H10p md_H20p B-4p L50p Tf -Tr-50p;0 Bdrd100p -Gdl180d,$gradient40;0p,$gradient55;28p,$gradient65;53p Ft -Blr110"></div>
+</section>
+
 <script src="/assets/script/profile-card.js" type="module"></script>
 <script src="/assets/script/scroll-carousel.js" type="module"></script>
 <script src="/assets/script/process-scroll.js" type="module"></script>
+<script src="/assets/script/faq-item.js" type="module"></script>

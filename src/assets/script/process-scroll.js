@@ -1,24 +1,28 @@
-class processScroll extends HTMLElement {
+class ProcessScroll extends HTMLElement {
 	constructor() {
 		super();
+	}
+
+	connectedCallback() {
 		this.track = this.querySelector('.track');
-		this.init();
+		this.track.addEventListener('wheel', this.onWheel, { passive: false });
 	}
 
-	init() {
-		this.addEventListener('wheel', (e) => {
-			const { deltaY } = e;
-			const maxScrollLeft = this.track.scrollWidth - this.track.clientWidth;
-			const canScrollLeft = deltaY > 0 && this.track.scrollLeft < maxScrollLeft;
-			const canScrollRight = deltaY < 0 && this.track.scrollLeft > 0;
+	onWheel = (e) => {
+		const { deltaY } = e;
+		const maxScrollLeft = this.track.scrollWidth - this.track.clientWidth;
+		const canScrollRight = deltaY > 0 && this.track.scrollLeft < maxScrollLeft - 1;
+		const canScrollLeft = deltaY < 0 && this.track.scrollLeft > 1;
 
-			if (canScrollLeft || canScrollRight) {
-				e.preventDefault();
-				const speed = 2.5;
-				this.track.scrollBy({ left: deltaY * speed, behavior: 'smooth' });
-			}
-		}, { passive: false });
-	}
+		if (canScrollRight || canScrollLeft) {
+			e.preventDefault();
+			const speed = 3;
+			this.track.scrollBy({ left: deltaY * speed, behavior: 'smooth' });
+		} else {
+			e.preventDefault();
+			window.scrollBy({ top: deltaY, behavior: 'auto' });
+		}
+	};
 }
 
-customElements.define('process-scroll', processScroll);
+customElements.define('process-scroll', ProcessScroll);

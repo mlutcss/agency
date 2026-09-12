@@ -43,12 +43,15 @@ html {
 	--ml-decor110: #A773A0;
 	--ml-decor120: #AF3573;
 	--ml-decor130: #513E72;
+	--ml-decor140: rgba(18, 12, 36, 1);
 	--ml-gradient10: #4D5588;
 	--ml-gradient20: #121455;
 	--ml-gradient30: #0C061A;
 	--ml-gradient40: #826FC3;
 	--ml-gradient50: rgba(96, 82, 144, 0.35);
+	--ml-gradient55: rgba(96, 82, 144, 0.50);
 	--ml-gradient60: rgba(239, 67, 139, 0.20);
+	--ml-gradient65: rgba(239, 67, 139, 0.50);
 
 	scroll-padding-top: var(--ml-headerH);
 }
@@ -59,10 +62,6 @@ html {
 
 .decorS {
 	font-size: clamp(0.75rem, 0.3859rem + 1.5534vw, 2.25rem);
-}
-
-.logoSize {
-	font-size: clamp(9.625rem, 4.9678rem + 19.8706vw, 28.8125rem);
 }
 
 .scroll-track {
