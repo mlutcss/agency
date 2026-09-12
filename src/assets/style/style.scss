@@ -4,6 +4,14 @@
 		'content': ['src/**/*.ejs','src/**/*.json','src/assets/script/**/*.js'],
 		'minify': true
 	),
+
+	$utils-config: (
+		'states': (
+			'custom': (
+				'expanded': '.no-expanded',
+			)
+		)
+	)
 );
 
 a {
@@ -35,12 +43,17 @@ html {
 	--ml-decor110: #A773A0;
 	--ml-decor120: #AF3573;
 	--ml-decor130: #513E72;
+	--ml-decor140: rgba(18, 12, 36, 1);
 	--ml-gradient10: #4D5588;
 	--ml-gradient20: #121455;
 	--ml-gradient30: #0C061A;
 	--ml-gradient40: #826FC3;
 	--ml-gradient50: rgba(96, 82, 144, 0.35);
+	--ml-gradient55: rgba(96, 82, 144, 0.50);
 	--ml-gradient60: rgba(239, 67, 139, 0.20);
+	--ml-gradient65: rgba(239, 67, 139, 0.50);
+
+	scroll-padding-top: var(--ml-headerH);
 }
 
 .decorM {
@@ -51,10 +64,6 @@ html {
 	font-size: clamp(0.75rem, 0.3859rem + 1.5534vw, 2.25rem);
 }
 
-.logoSize {
-	font-size: clamp(9.625rem, 4.9678rem + 19.8706vw, 28.8125rem);
-}
-
 .scroll-track {
 	scroll-snap-type: x mandatory;
 	-webkit-overflow-scrolling: touch;
@@ -62,7 +71,14 @@ html {
 	-ms-overflow-style: none;
 }
 
-.scroll-track::-webkit-scrollbar {
+.process-track {
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.scroll-track::-webkit-scrollbar,
+.process-track::-webkit-scrollbar {
 	display: none;
 }
 

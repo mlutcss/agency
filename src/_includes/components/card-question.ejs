@@ -1,0 +1,20 @@
+<%
+	const question = {
+		step:"Fns4u xxl_Fns4.5u Fnw-n Lnh-n Fnst-n Lts0 C-$accent900 D-ib Coi-step Ct-counter(step);'.'_b D-ib_b C-$accent900_b Mr6_b"
+	}
+%>
+
+<faq-item
+	class="D-f Fld-c Gap3u md_Gap5u W100p P2u;5u Bdrd2u Bd0.5u;s;$accent100"
+	active-css="Bgc-$brand100"
+>
+	<div class="D-f Ai-c Jc-sb Gap2u W100p">
+		<span class="<%= question.step %>"><%= it.title %></span>
+		<button class="btn arrow-btn Fls0">
+			<svg class="arrow C-$accent900 md_C-$brand_h C-$brand500_a -Ts Tf" width="32" height="32">
+				<use href="/assets/img/icons.svg#arrow-down"></use>
+			</svg>
+		</button>
+	</div>
+	<p class="text D-n M0 W88p C-$accent900 Fns4u Fnw-n Lnh-n Fnst-n xxl_Fns4.5u"><%= it.text %></p>
+</faq-item>

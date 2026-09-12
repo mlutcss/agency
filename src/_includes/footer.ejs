@@ -1,0 +1,41 @@
+<footer id="footer" class="Ps W100p D-f Fld-c Gap3u P6u;4u Bgc-$core900 sm_D-g sm_Gtc-t2 md_P10u lg_Gtc-t3 xl_P10u;20u xxl_P10u;25u">
+	<%# Logo %>
+	<a href="/#hero-section" id="footer-logo" class="D-f Ai-c As-fs -All-sr P2.5u;2u sm_Gc1">
+		<img src="/assets/img/logo.svg" alt="mlut logo" class="W130 md_W190 xxl_W260 H-a">
+	</a>
+
+	<div class="D-f Fld-c Ai-fs sm_Gc1 sm_As-fe lg_Gap3u lg_Gc2 lg_As-fs lg_Gr1/3 xxl_Js-c">
+		<div class="D-f Jc-fs Ai-c Gap2u lg_Od1">
+			<div class="D-f Ai-c Gap2u P0;2.5u;0;2u lg_P0;2.5u;0;5u">
+				<span class="C-$accent900 Fns4u md_Fns4.5u xxl_Fns5u">Сообщества:</span>
+			</div>
+			<ul class="D-f Jc-sb Ai-c Gap8u -All-sr">
+				<% for (let extLink of it.extLinks) { %>
+					<li class="W100p D-f Jc-c Ai-c P1u Bgc-n">
+						<%- include('./components/external-link.ejs',{
+						icon: `${extLink.icon}`,
+						link: `${extLink.link}`,
+						name: `${extLink.name}`
+						}) %>
+					</li>
+				<% } %>
+			</ul>
+		</div>
+		<nav class=" lg_Od0">
+			<ul class="D-f Ai-c Fns4u md_Fns4.5u xxl_Fns5u -All-sr">
+				<% for (let navLink of it.navLinks) {%>
+					<li>
+						<a href="<%= navLink.link %>" class="D C-$accent900 P2.5u;2u Txd-n md_C-$brand_h C-$brand_a -Ts lg_P2.5u;5u">
+							<%= navLink.text %>
+						</a>
+					</li>
+				<% }%>
+			</ul>
+		</nav>
+	</div>
+	<div class="D-f Fld-c As-fs Mt2u C-$accent900 sm_Gc2 sm_Gr1/3 sm_Mt0 md_Fns4.5u md_Js-fe md_As-c lg_Gc3 lg_Gap3u xxl_Fns5u">
+		<span class="P2.5u">ИП Ульянов Валентин Владимирович</span>
+		<span class="P2.5u">ИНН 000000000000</span>
+		<span class="P2.5u">ОГРНИП 00000000000000</span>
+	</div>
+</footer>

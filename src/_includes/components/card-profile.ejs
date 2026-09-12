@@ -1,0 +1,38 @@
+<%
+	let socialLinkVisible;
+	if (it.connection) {
+		socialLinkVisible = 'Vs-v O1';
+	} else {
+		socialLinkVisible = 'Vs-h O0';
+	}
+%>
+
+<profile-card class="D-f Fld-c Ai-c Jc-sb Gap3u no-expanded W242 Mnh375 lg_W305 lg_Mnh390 xxl_W412 xxl_P5u;7u;0">
+	<div class="Ps D-f Fld-c Gap1u">
+		<div class="Bdrd100p Ov-h -Sz100 lg_-Sz140">
+			<img src="/assets/img/team/<%= it.img %>.png" class="W100p Ojf Ojp-c"/>
+		</div>
+		<div class="W100p D-f Jc-c Ai-c Gap4u lg_Gap2u lg_Ps-a lg_T67p lg_L50p lg_Tf lg_-Tr-50p;0 <%= socialLinkVisible %>">
+			<div class="P0.5u">
+				<%- include('./external-link.ejs',{
+					icon: 'telegram',
+					link: `#0`,
+				}) %>
+			</div>
+			<div class="P0.5u">
+				<%- include('./external-link.ejs',{
+					icon: 'mail',
+					link: `#0`,
+				}) %>
+			</div>
+		</div>
+	</div>
+	<div class="D-f Fld-c Ai-c Jc-fs Gap4u Flg1 W100p Fns4u Lnh-n Fnst-n C-$accent900">
+		<span class="Fnw700 lg_Fns6u"><%= it.name %></span>
+		<span class="Txa-c xxl_Fns4.5u"><%= it.profession %></span>
+		<div class="Flg1 W100p :-expanded_H20u xxl_:-expanded_H18u :-expanded_Ovy-h :-expanded_-Gdl0d,$core100;5p,$accent900;100p :-expanded_Bgcl-t :-expanded_C-tp :-expanded_gradient-text">
+			<p class="M0 Txa-c xxl_Fns4.5u"><%= it.description %></p>
+		</div>
+	</div>
+	<button class="btn Mt7u md_Mt8u xxl_Mt10u C-$accent900 md_C-$brand_h C-$brand500_a -Ts">Подробнее</button>
+</profile-card>
