@@ -1,21 +1,15 @@
 const heroSection = document.querySelector('#hero-section');
-const logo = document.querySelector('#header-logo');
 const footer = document.querySelector('#footer');
-const visibility = { hero: false, footer: false };
+const logo = document.querySelector('#header-logo');
+
+let anyVisible = false;
 
 function handleIntersect(entries) {
 	entries.forEach((entry) => {
-
-		if (entry.target === heroSection) {
-			visibility.hero = entry.isIntersecting;
-		}
-
-		if (entry.target === footer) {
-			visibility.footer = entry.isIntersecting;
+		if (entry.target === heroSection || entry.target === footer) {
+			anyVisible = entry.isIntersecting;
 		}
 	});
-
-	const anyVisible = visibility.hero || visibility.footer;
 
 	if (anyVisible) {
 		logo.style.opacity = 0;

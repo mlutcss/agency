@@ -21,17 +21,15 @@
 				<% } %>
 			</ul>
 		</div>
-		<nav class=" lg_Od0">
-			<ul class="D-f Ai-c Fns4u md_Fns4.5u xxl_Fns5u -All-sr">
-				<% for (let navLink of it.navLinks) {%>
-					<li>
-						<a href="<%= navLink.link %>" class="D C-$accent900 P2.5u;2u Txd-n md_C-$brand_h C-$brand_a -Ts lg_P2.5u;5u">
-							<%= navLink.text %>
-						</a>
-					</li>
-				<% }%>
-			</ul>
-		</nav>
+		<ul class="D-f Ai-c Fns4u md_Fns4.5u xxl_Fns5u -All-sr lg_Od0">
+			<% for (let navLink of it.navLinks) {%>
+				<li>
+					<a href="<%= navLink.link %>" class="D C-$accent900 P2.5u;2u Txd-n md_C-$brand_h C-$brand_a -Ts lg_P2.5u;5u">
+						<%= navLink.text %>
+					</a>
+				</li>
+			<% }%>
+		</ul>
 	</div>
 	<div class="D-f Fld-c As-fs Mt2u C-$accent900 sm_Gc2 sm_Gr1/3 sm_Mt0 md_Fns4.5u md_Js-fe md_As-c lg_Gc3 lg_Gap3u xxl_Fns5u">
 		<span class="P2.5u">ИП Ульянов Валентин Владимирович</span>

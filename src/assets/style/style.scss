@@ -4,14 +4,6 @@
 		'content': ['src/**/*.ejs','src/**/*.json','src/assets/script/**/*.js'],
 		'minify': true
 	),
-
-	$utils-config: (
-		'states': (
-			'custom': (
-				'expanded': '.no-expanded',
-			)
-		)
-	)
 );
 
 a {
@@ -52,8 +44,10 @@ html {
 	--ml-gradient55: rgba(96, 82, 144, 0.50);
 	--ml-gradient60: rgba(239, 67, 139, 0.20);
 	--ml-gradient65: rgba(239, 67, 139, 0.50);
+}
 
-	scroll-padding-top: var(--ml-headerH);
+.scroll-target {
+	scroll-margin-top: var(--ml-headerH);
 }
 
 .decorM {
@@ -84,9 +78,4 @@ html {
 
 .scroll-slide {
 	scroll-snap-align: center;
-}
-
-.gradient-text {
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 }
