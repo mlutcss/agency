@@ -12,7 +12,7 @@ area: 'main'
 %>
 
 <%# Hero-section %>
-<section id="hero-section" class="D-f Fld-c Ai-c W100p Mt-$headerH P5u;4u;10u md_P10u;8u lg_D-g lg_Gtc2fr;3fr lg_Clmg10u lg_P15u xl_P20u xxl_P20u;10p xxl_Clmg20u">
+<section id="hero-section" class="D-f Fld-c Ai-c W100p Mt-$headerH P8u;4u;10u md_P10u;8u lg_D-g lg_Gtc2fr;3fr lg_Clmg10u lg_P15u xl_P20u xxl_P20u;10p xxl_Clmg20u">
 	<div class="Ps-a W100p md_W90p Apcr2/1 T5p L-10p md_T12p md_L5p Bdrd10u -Gdrd91p;91p;at;50p;100p,$gradient10;5p,$gradient20;50p,$gradient30;100p  Ft -Blr125 md_-Blr190"></div>
 
 	<%# Logo %>
@@ -63,7 +63,7 @@ area: 'main'
 		</div>
 	</div>
 
-	<strong class="Ps Mt13u C-$accent900 Fns4.5u sm_Fns5u Fnw400 Fnst-n Lnh-n Txa lg_Gc1 lg_Mt12u lg_Txa-s xxl_Fns6u xxl_W90p">
+	<strong class="Ps Mt6u md_Mt13u C-$accent900 Fns4.5u sm_Fns5u Fnw400 Fnst-n Lnh-n Txa lg_Gc1 lg_Mt12u lg_Txa-s xxl_Fns6u xxl_W90p">
 		Помогаем стартапам запускать продукты быстрее — от идеи до реального продукта
 	</strong>
 
@@ -115,7 +115,7 @@ area: 'main'
 				})
 			%>
 		</div>
-		<div class="D-f Fld-c Gap3u Mt10u W100p sm_Gap4u lg_Gc2 lg_Gr1/3 lg_Mt0 Mnw0">
+		<div class="D-f Fld-c Gap3u Mt8u W100p sm_Gap4u lg_Gc2 lg_Gr1/3 lg_Mt0 Mnw0">
 			<span class="M0 Fns4u Lnh-n Fnst-n C-$accent900 sm_Fns5u lg_D-n">Что о нас пишут:</span>
 			<ul class="D-f Ai-c Gap4u -All-sr Ovx-s Scb-s scroll-track Mr-4u Pr4u md_Gap5u md_Mr-15u xl_Mr-20u xxl_Mr-25u">
 				<% for (let card of it.mediaReviews) { %>
@@ -133,7 +133,7 @@ area: 'main'
 </section>
 
 <%# Team-section %>
-<section id="team-section" class="scroll-target Ps D-f Fld-c Gap3u md_Gap5u lg_Gap10u W100p md_P15u xl_P20u xxl_P20u;25u">
+<section id="team-section" class="scroll-target Ps D-f Fld-c Gap3u md_Gap5u lg_Gap10u W100p md_P15u xl_P20u">
 	<div class="Ps-a Zi-1 T-5p L50p W100p H40p Bdrd20u Tf -Tr-50p;0 -Gdrd90p;90p;at;50p;100p,$gradient10;41p,$gradient20;73p,$gradient30;100p Ft -Blr125"></div>
 	<h2 class="M0 P2.5u Fns6u Fnw-n Lnh-n Fnst-n C-$accent900 Txa-c md_Fns8u xxl_Fns11u">Наша команда</h2>
 
@@ -143,7 +143,7 @@ area: 'main'
 				<use href="/assets/img/icons.svg#arrow"></use>
 			</svg>
 		</button>
-		<ul class="scroll-track D-f Ai-fs Gap5u xxl_Gap6u -All-sr Ovx-s">
+		<ul class="scroll-track D-f Ai-fs Jc-sb Gap5u xxl_Gap2u -All-sr Ovx-s Flg1">
 			<% for (let card of it.team) { %>
 				<li class="scroll-slide D-f">
 					<%- include('_includes/components/card-profile.ejs',{
@@ -226,13 +226,14 @@ area: 'main'
 	};
 %>
 <%# CTA-section %>
-<section class="Ps W100p D-f Fld-c Ai-c P5u;0;10u md_P10u;0;15u xxl_P20u;0;20u">
+<section class="Ps W100p D-f Fld-c Ai-c P5u;0;15u md_P10u;0;18u xxl_P20u;0;20u">
+	<h2 class="-D-vh">Наша ключевая особенность</h2>
 	<div class="Ps D-f Fld-c Ai-c Fns4u Fnw400 Lnh-n Fnst-n C-$accent900 Txa-c">
 		<span>Мы не делаем просто сайт,</span>
-		<h2 class="M0 D-f Fld-c Ai-c sm_Fld-r Fns4u Fnw400 Lnh-n Fnst-n">
+		<div class="M0 D-f Fld-c Ai-c sm_Fld-r Fns4u Fnw400 Lnh-n Fnst-n">
 			<span class="sm_Fns6u md_Fns8u xxl_Fns11u sm_Mr2u md_Mr2.5u">мы переводим на</span>
 			<span class="Fns6u md_Fns8u xxl_Fns11u C-$brand600">следующий уровень</span>
-		</h2>
+		</div>
 	</div>
 	<div class="Ps Zi-1 W100p D-f Fld-c Ai-c">
 		<div class="<%= decorCss.blurG %> T-1p md_T1p"></div>
@@ -241,10 +242,10 @@ area: 'main'
 		<div class="D-n md_D <%= decorCss.blurV %> R0"></div>
 		<picture class="D-b W100p Txa-c">
 			<source srcset="assets/img/rocket.svg" media="(min-width: 768px)">
-			<img src="assets/img/rocket2.svg" alt="" class="Mt2u md_Mt6u W100p md_W80p H-a">
+			<img src="assets/img/rocket2.svg" alt="" class="Mt2u md_Mt6u W100p md_W80p">
 		</picture>
 	</div>
-	<div class="Ps Zi1 W90p sm_W80p md_Mxw267 Mt7u">
+	<div class="Ps Zi1 W90p sm_W80p md_Mxw267 Mt6u">
 		<%- include('_includes/components/link-button.ejs',{
 			url:"#0",
 			text: "Оставить заявку",
