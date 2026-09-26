@@ -1,0 +1,19 @@
+<li class="Ps D-f W300 md_W460 Mnh330 md_Mnh353 Fls0">
+	<% for (let img of it.images) { %>
+		<img
+			src="assets/img/arcs/<%= it.name %>/<%= img.src %>.svg"
+			class="Ps-a W100p H-a <%= img.styles %>"
+		/>
+	<% } %>
+
+	<div class="Ps Mt37p md_Mt24p W90p D-f Fld-c Ai-st Gap11u W100p C-$accent900">
+		<img src="assets/img/arcs/dot_anm.svg" class="-Sz48 md_-Sz68"/>
+		<div class="Ml2u D-f Fld-c Ai-st Gap2.5u">
+			<span class="Fns4.5u Fnw700 md_Mxw60p md_Fns6u"><%= it.title %></span>
+			<p class="M0 Fns4u"><%= it.text %></p>
+		</div>
+	</div>
+	<% if (it.name === 'sixth_step') { %>
+		<div class="Ps-a T0 R-13p H100p W15p -Gdl90d,tp;0p,$core100;70p;100p"></div>
+	<% } %>
+</li>
