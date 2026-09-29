@@ -4,8 +4,17 @@
 		<img src="/assets/img/logo.svg" alt="mlut logo" class="W130 md_W190 xxl_W260 H-a">
 	</a>
 
-	<div class="D-f Fld-c Ai-fs sm_Gc1 sm_As-fe lg_Gap3u lg_Gc2 lg_As-fs lg_Gr1/3 xxl_Js-c">
-		<div class="D-f Jc-fs Ai-c Gap2u lg_Od1">
+	<div class="D-f Fld-c Ai-fs Fns4u md_Fns4.5u xxl_Fns5u sm_Gc1 sm_As-fe lg_H100p lg_Jc-sb lg_Gap3u lg_Gc2 lg_As-fs lg_Gr1/3 xxl_Js-c">
+		<ul class="D-f Ai-c -All-sr">
+			<% for (let navLink of it.navLinks) {%>
+				<li>
+					<a href="<%= navLink.link %>" class="D C-$accent900 P2.5u;2u Txd-n md_C-$brand_h C-$brand_a -Ts lg_P2.5u;5u">
+						<%= navLink.text %>
+					</a>
+				</li>
+			<% }%>
+		</ul>
+		<div class="D-f Fld-c Ai-fs Jc-sb lg_Gap3u lg_Flg0.5">
 			<span class="-D-vh">Сообщества:</span>
 			<ul class="D-f Jc-sb Ai-c Gap4u Pl1u lg_Pl4u -All-sr">
 				<% for (let extLink of it.extLinks) { %>
@@ -18,16 +27,10 @@
 					</li>
 				<% } %>
 			</ul>
+			<a href="/#0" class="D Txd-n P2.5u;2u lg_P2.5u;5u C-$accent900 md_C-$brand_h C-$brand_a -Ts">
+				Конфиденциальность
+			</a>
 		</div>
-		<ul class="D-f Ai-c Fns4u md_Fns4.5u xxl_Fns5u -All-sr lg_Od0">
-			<% for (let navLink of it.navLinks) {%>
-				<li>
-					<a href="<%= navLink.link %>" class="D C-$accent900 P2.5u;2u Txd-n md_C-$brand_h C-$brand_a -Ts lg_P2.5u;5u">
-						<%= navLink.text %>
-					</a>
-				</li>
-			<% }%>
-		</ul>
 	</div>
 	<div class="D-f Fld-c As-fs Mt2u C-$accent900 sm_Gc2 sm_Gr1/3 sm_Mt0 md_Fns4.5u md_Js-fe md_As-c lg_Gc3 lg_Gap3u xxl_Fns5u">
 		<span class="P2.5u">ИП Ульянов Валентин Владимирович</span>
