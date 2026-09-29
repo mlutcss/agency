@@ -30,8 +30,14 @@ function createObserver() {
 	};
 
 	const observer = new IntersectionObserver(handleIntersect, options);
-	observer.observe(heroSection);
-	observer.observe(footer);
+
+	if (heroSection) {
+		observer.observe(heroSection);
+	}
+
+	if (footer) {
+		observer.observe(footer);
+	}
 }
 
 createObserver();
