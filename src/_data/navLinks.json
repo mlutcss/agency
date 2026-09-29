@@ -1,14 +1,14 @@
 [
 	{
-		"link":"#0",
+		"link":"/#product-section",
 		"text":"О нас"
 	},
 	{
-		"link":"#0",
+		"link":"/#team-section",
 		"text":"Команда"
 	},
 	{
-		"link":"#0",
+		"link":"/#faq-section",
 		"text":"FAQ"
 	}
 ]
