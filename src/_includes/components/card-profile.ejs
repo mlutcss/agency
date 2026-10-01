@@ -12,19 +12,19 @@
 <div class="D-f Fld-c Ai-c Jc-sb Gap3u no-expanded W242 Mnh375 lg_W305 lg_Mnh390 xxl_W100p xxl_Mxw420 xxl_P5u;6u;0">
 	<div class="Ps D-f Fld-c Gap1u">
 		<div class="Bdrd100p Ov-h -Sz100 lg_-Sz140">
-			<img src="/assets/img/team/<%= it.img %>.png" class="W100p Ojf Ojp-c"/>
+			<img src="/assets/img/team/<%= it.img %>.jpg" class="W100p Ojf Ojp-c"/>
 		</div>
 		<div class="W100p D-f Jc-c Ai-c Gap4u lg_Gap2u lg_Ps-a lg_T67p lg_L50p lg_Tf lg_-Tr-50p;0 <%= socialLinkVisible %>">
 			<div class="P0.5u">
 				<%- include('./external-link.ejs',{
 					icon: 'telegram',
-					link: `#0`,
+					link: it.telegram ?? '#',
 				}) %>
 			</div>
 			<div class="P0.5u">
 				<%- include('./external-link.ejs',{
 					icon: 'mail',
-					link: `#0`,
+					link: it.email ?? '#',
 				}) %>
 			</div>
 		</div>

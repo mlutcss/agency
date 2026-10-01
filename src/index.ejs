@@ -63,13 +63,16 @@ area: 'main'
 		</div>
 	</div>
 
+	<h1 class="-D-vh">
+			mlut agency - digital-агентство для стартапов с оплатой за результат
+	</h1>
 	<strong class="Ps Mt6u md_Mt13u C-$accent900 Fns4.5u sm_Fns5u Fnw400 Fnst-n Lnh-n Txa lg_Gc1 lg_Mt12u lg_Txa-s xxl_Fns6u xxl_W90p">
-		Помогаем стартапам запускать продукты быстрее — от идеи до реального продукта
+		Помогаем стартапам перейти от пет-проекта до полноценного продукта на ранней стадии. Работаем с оплатой за результат.
 	</strong>
 
 	<div class="Ps Mt7u W100p sm_W80p md_Mxw267 lg_Gc1 lg_Mt15u lg_As-e">
 		<%- include('_includes/components/link-button.ejs',{
-			url:"#0",
+			url:"https://forms.yandex.ru/u/6abe98e9f47e73a4aa0499da",
 			text: "Обсудить проект",
 			variant: "brand"
 			})
@@ -146,13 +149,7 @@ area: 'main'
 		<ul class="scroll-track D-f Ai-fs Jc-sb Gap5u xxl_Gap2u -All-sr Ovx-s Flg1">
 			<% for (let card of it.team) { %>
 				<li class="scroll-slide D-f">
-					<%- include('_includes/components/card-profile.ejs',{
-						name: `${card.name}`,
-						img: `${card.img}`,
-						profession: `${card.profession}`,
-						description: `${card.description}`,
-						connection: card.connection
-						})
+					<%- include('_includes/components/card-profile.ejs', card)
 					%>
 				</li>
 			<% } %>
@@ -247,7 +244,7 @@ area: 'main'
 	</div>
 	<div class="Ps Zi1 W90p sm_W80p md_Mxw267 Mt6u">
 		<%- include('_includes/components/link-button.ejs',{
-			url:"#0",
+			url:"https://forms.yandex.ru/u/6abe98e9f47e73a4aa0499da",
 			text: "Оставить заявку",
 			variant: "brand"
 			})
