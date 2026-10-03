@@ -2,7 +2,8 @@
 <path d="M480 3H469.558C403.37 3 306.188 35 240 35C173.812 35 76.6297 3 10.4417 3H-4.76837e-06" stroke="url(#paint0_linear_1037_271)" stroke-width="6"/>
 <defs>
 <linearGradient id="paint0_linear_1037_271" x1="480" y1="19" x2="0" y2="19" gradientUnits="userSpaceOnUse">
-<stop stop-color="#F26DF7"/>
+<stop stop-color="#F26DF7" stop-opacity="0"/>
+<stop offset="0.30" stop-color="#F26DF7"/>
 <stop offset="1" stop-color="#9343FF"/>
 </linearGradient>
 </defs>
