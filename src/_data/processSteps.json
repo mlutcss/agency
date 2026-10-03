@@ -92,11 +92,11 @@
 			{ "src": "Ellipse60", "styles": "T19p L9p md_T10p" },
 			{ "src": "Ellipse61", "styles": "T20p L11p md_T9p" },
 			{ "src": "Ellipse62", "styles": "T26p L8p md_T20p md_L6p" },
-			{ "src": "Ellipse63", "styles": "T30p L10p md_T21p" },
+			{ "src": "Ellipse63", "styles": "T28p L10p md_T21p" },
 			{ "src": "Ellipse64", "styles": "T34p L8p md_T32p" },
 			{ "src": "Ellipse91", "styles": "T41p L8p md_L10p" },
 			{ "src": "Ellipse91", "styles": "T41p L12p" },
-			{ "src": "Ellipse93", "styles": "T41p L10p" },
+			{ "src": "Ellipse93", "styles": "T40p L10p" },
 			{ "src": "Ellipse94", "styles": "T41p L10p" },
 			{ "src": "Ellipse95", "styles": "T40p L8p" }
 		]
