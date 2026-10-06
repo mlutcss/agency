@@ -77,5 +77,6 @@ html {
 }
 
 .scroll-slide {
-	scroll-snap-align: center;
+	flex: 0 0 auto;
+	scroll-snap-align: start;
 }
