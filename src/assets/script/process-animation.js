@@ -1,23 +1,14 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import * as three from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
-const OPTIONS = {
-	// Вертикальное покачивание
-	floatAmplitude: 3,
-	floatSpeed: 1.8,
-
-	// Горизонтальное покачивание (по умолчанию выключено)
+const options = {
+	floatAmplitude: 4,
+	floatSpeed: 2.4,
 	floatAmplitudeX: 0,
 	floatSpeedX: 1.2,
-
-	// Пульсация масштаба — именно она даёт ощущение «расходимся по сторонам»
-	pulseAmount: 0.015,
-	pulseSpeed: 1.2,
-
+	pulseAmount: 0.02,
+	pulseSpeed: 1.6,
 	phaseStep: 0.7,
 	overlayClass: 'process-card__canvas',
-
-	// Насколько канвас выступает за границы карточки (в px).
-	// Положительное значение = выступ наружу.
 	overflow: {
 		right: 105,
 		left: 0,
@@ -29,7 +20,7 @@ const OPTIONS = {
 class CardAnimator {
 	constructor(card) {
 		this.card = card;
-		this.images = [...card.querySelectorAll('img.Ps-a')];
+		this.images = [...card.querySelectorAll('.arc-line')];
 
 		if (this.images.length === 0) {
 			return;
@@ -38,13 +29,15 @@ class CardAnimator {
 		this.sprites = [];
 		this.visible = false;
 		this.ready = false;
+		this._rafId = null;
+		this._completed = 0;
 
 		Promise.all(this.images.map((img) => this._waitForImage(img)))
 			.then(() => this._setup());
 	}
 
 	_waitForImage(img) {
-		if (img.complete && img.naturalWidth) {
+		if (img.complete) {
 			return Promise.resolve();
 		}
 
@@ -59,18 +52,16 @@ class CardAnimator {
 			this.card.style.position = 'relative';
 		}
 
-		// Размеры карточки (без выступа)
 		const cardRect = this.card.getBoundingClientRect();
 		this.cardW = cardRect.width;
 		this.cardH = cardRect.height;
 
-		// Размеры overlay (с выступом)
-		const o = OPTIONS.overflow;
-		this.W = this.cardW + o.left + o.right;
-		this.H = this.cardH + o.top + o.bottom;
+		const overflow = options.overflow;
+		this.W = this.cardW + overflow.left + overflow.right;
+		this.H = this.cardH + overflow.top + overflow.bottom;
 
 		// ---------- Renderer ----------
-		this.renderer = new THREE.WebGLRenderer({
+		this.renderer = new three.WebGLRenderer({
 			antialias: true,
 			alpha: true,
 			premultipliedAlpha: true,
@@ -85,17 +76,14 @@ class CardAnimator {
 		canvas.style.height = '100%';
 
 		// ---------- Overlay ----------
-		// Отрицательные top/right/bottom/left «растягивают» блок за границы
-		// карточки. pointer-events:none — чтобы не блокировать клики.
-		// overflow:hidden НЕ ставим — иначе вылет спрайтов обрежется.
 		const overlay = document.createElement('div');
-		overlay.className = OPTIONS.overlayClass;
+		overlay.className = options.overlayClass;
 		overlay.style.cssText = [
 			'position:absolute',
-			`top:${-o.top}px`,
-			`right:${-o.right}px`,
-			`bottom:${-o.bottom}px`,
-			`left:${-o.left}px`,
+			`top:${-overflow.top}px`,
+			`right:${-overflow.right}px`,
+			`bottom:${-overflow.bottom}px`,
+			`left:${-overflow.left}px`,
 			'pointer-events:none',
 			'z-index:0',
 		].join(';');
@@ -105,7 +93,7 @@ class CardAnimator {
 
 		// Текстовый блок — поверх канваса
 		const textBlock = this.card.querySelector(
-			':scope > div:not(.' + OPTIONS.overlayClass + ')'
+			':scope > div:not(.' + options.overlayClass + ')'
 		);
 
 		if (textBlock) {
@@ -117,8 +105,8 @@ class CardAnimator {
 		}
 
 		// ---------- Scene + ортографическая камера ----------
-		this.scene = new THREE.Scene();
-		this.camera = new THREE.OrthographicCamera(
+		this.scene = new three.Scene();
+		this.camera = new three.OrthographicCamera(
 			-this.W / 2, this.W / 2,
 			this.H / 2, -this.H / 2,
 			0.1, 1000
@@ -126,54 +114,74 @@ class CardAnimator {
 		this.camera.position.z = 100;
 
 		// ---------- Загрузка текстур ----------
-		const loader = new THREE.TextureLoader();
+		const loader = new three.TextureLoader();
 
 		this.images.forEach((img, i) => {
-			loader.load(img.src, (texture) => {
-				texture.colorSpace = THREE.SRGBColorSpace;
-				texture.minFilter = THREE.LinearFilter;
-				texture.magFilter = THREE.LinearFilter;
-				texture.generateMipmaps = false;
+			const settled = () => {
+				this._completed++;
+				this._maybeReady();
+			};
 
-				const material = new THREE.SpriteMaterial({
-					map: texture,
-					transparent: true,
-					depthTest: false,
-					depthWrite: false,
-				});
+			loader.load(
+				img.src,
+				(texture) => {
+					texture.colorSpace = three.SRGBColorSpace;
+					texture.minFilter = three.LinearFilter;
+					texture.magFilter = three.LinearFilter;
+					texture.generateMipmaps = false;
 
-				const sprite = new THREE.Sprite(material);
+					const material = new three.SpriteMaterial({
+						map: texture,
+						transparent: true,
+						depthTest: false,
+						depthWrite: false,
+					});
 
-				const pos = this._computeSpritePosition(img, cardRect);
-				sprite.position.set(pos.x, pos.y, 0);
-				sprite.scale.set(pos.w, pos.h, 1);
+					const sprite = new three.Sprite(material);
+					const pos = this._computeSpritePosition(img, cardRect);
+					sprite.position.set(pos.x, pos.y, 0);
+					sprite.scale.set(pos.w, pos.h, 1);
 
-				sprite.userData = {
-					baseX: pos.x,
-					baseY: pos.y,
-					baseW: pos.w,
-					baseH: pos.h,
-					phase: i * OPTIONS.phaseStep,
-					img,
-				};
+					sprite.userData = {
+						baseX: pos.x,
+						baseY: pos.y,
+						baseW: pos.w,
+						baseH: pos.h,
+						phase: i * options.phaseStep,
+						img,
+					};
 
-				this.scene.add(sprite);
-				this.sprites.push(sprite);
-
-				img.style.visibility = 'hidden';
-
-				if (this.sprites.length === this.images.length) {
-					this.ready = true;
+					this.scene.add(sprite);
+					this.sprites.push(sprite);
+					img.style.visibility = 'hidden';
+					settled();
+				},
+				undefined,
+				() => {
+					console.warn('[CardAnimator] failed to load texture:', img.src);
+					img.style.visibility = '';
+					settled();
 				}
-			});
+			);
 		});
 
 		// ---------- Видимость ----------
 		this.observer = new IntersectionObserver(
-			(entries) => entries.forEach((e) => {
-				this.visible = e.isIntersecting;
-			}),
-			{ rootMargin: '200px' }
+			(entries) => {
+				entries.forEach((e) => {
+					this.visible = e.isIntersecting;
+
+					if (this.visible) {
+						this._startAnimation();
+					} else {
+						this._stopAnimation();
+					}
+				});
+			},
+			{
+				rootMargin: '-10px 0px',
+				threshold: 0,
+			}
 		);
 		this.observer.observe(this.card);
 
@@ -181,20 +189,23 @@ class CardAnimator {
 		this._onResize = () => this._handleResize();
 		window.addEventListener('resize', this._onResize);
 
-		this.clock = new THREE.Clock();
-		this._animate();
+		// ---------- Часы ----------
+		this.clock = new three.Clock();
 	}
 
-	// Пересчёт координат с учётом смещения overlay
+	_maybeReady() {
+		if (this._completed === this.images.length) {
+			this.ready = true;
+			this._startAnimation();
+		}
+	}
+
 	_computeSpritePosition(img, cardRect) {
 		const r = img.getBoundingClientRect();
-		const o = OPTIONS.overflow;
+		const overflow = options.overflow;
+		const cxOverlay = (r.left - cardRect.left) + overflow.left + r.width / 2;
+		const cyOverlay = (r.top - cardRect.top) + overflow.top + r.height / 2;
 
-		// Центр img в координатах overlay (левый-верхний угол = 0,0)
-		const cxOverlay = (r.left - cardRect.left) + o.left + r.width / 2;
-		const cyOverlay = (r.top - cardRect.top) + o.top + r.height / 2;
-
-		// Переводим в координаты Three.js (центр overlay = 0,0, Y вверх)
 		return {
 			x: cxOverlay - this.W / 2,
 			y: -(cyOverlay - this.H / 2),
@@ -216,9 +227,9 @@ class CardAnimator {
 		this.cardW = cardRect.width;
 		this.cardH = cardRect.height;
 
-		const o = OPTIONS.overflow;
-		this.W = this.cardW + o.left + o.right;
-		this.H = this.cardH + o.top + o.bottom;
+		const overflow = options.overflow;
+		this.W = this.cardW + overflow.left + overflow.right;
+		this.H = this.cardH + overflow.top + overflow.bottom;
 
 		this.renderer.setSize(this.W, this.H);
 		this.renderer.domElement.style.width = '100%';
@@ -242,21 +253,29 @@ class CardAnimator {
 		});
 	}
 
-	_animate = () => {
-		requestAnimationFrame(this._animate);
-
-		if (!this.ready || !this.visible) {
-			return;
+	_startAnimation() {
+		if (this._rafId === null && this.ready && this.visible) {
+			this._rafId = requestAnimationFrame(this._animate);
 		}
+	}
 
+	_stopAnimation() {
+		if (this._rafId !== null) {
+			cancelAnimationFrame(this._rafId);
+			this._rafId = null;
+		}
+	}
+
+	_animate = () => {
+		this._rafId = null;
 		const t = this.clock.getElapsedTime();
 
 		for (let i = 0; i < this.sprites.length; i++) {
 			const sprite = this.sprites[i];
 			const { baseX, baseY, baseW, baseH, phase } = sprite.userData;
 
-			const dy = Math.sin(t * OPTIONS.floatSpeed + phase) * OPTIONS.floatAmplitude;
-			const pulse = 1 + Math.sin(t * OPTIONS.pulseSpeed + phase) * OPTIONS.pulseAmount;
+			const dy = Math.sin(t * options.floatSpeed + phase) * options.floatAmplitude;
+			const pulse = 1 + Math.sin(t * options.pulseSpeed + phase) * options.pulseAmount;
 
 			sprite.position.x = baseX;
 			sprite.position.y = baseY + dy;
@@ -264,6 +283,7 @@ class CardAnimator {
 		}
 
 		this.renderer.render(this.scene, this.camera);
+		this._rafId = requestAnimationFrame(this._animate);
 	};
 }
 
