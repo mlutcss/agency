@@ -4,10 +4,12 @@ class FaqItem extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.classList.remove('no-js');
 		this._text = this.querySelector('.text');
 		this._svg = this.querySelector('.arrow');
 		this._activeClass = this.getAttribute('active-css') || '';
 		this._onClick = () => this.toggle();
+		this.close();
 		this.addEventListener('click', this._onClick);
 	}
 
@@ -45,6 +47,7 @@ class FaqItem extends HTMLElement {
 
 		this._svg?.classList.remove('-Rt180d');
 		this._text?.classList.add('D-n');
+
 	}
 
 	isOpen() {

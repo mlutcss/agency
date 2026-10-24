@@ -4,8 +4,11 @@ class ProfileCard extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.jsReady = this.getAttribute('class-js-ready') || '';
 		this.input = this.querySelector('.expand-input');
 		this.wrap = this.querySelector('.expand-wrap');
+
+		this._jsReady();
 		this.collapsedHeight = this.wrap.getBoundingClientRect().height;
 		this.input.addEventListener('change', () => this.toggle());
 	}
@@ -28,6 +31,16 @@ class ProfileCard extends HTMLElement {
 				this.wrap.style.height = 'auto';
 			}
 		}, { once: true });
+	}
+
+	_jsReady() {
+		this.label = this.querySelector('.js-ready');
+
+		if (this.jsReady) {
+			const classes = this.jsReady.split(/\s+/).filter(Boolean);
+			this.wrap.classList.add(...classes);
+			this.label.classList.remove('D-n');
+		}
 	}
 }
 

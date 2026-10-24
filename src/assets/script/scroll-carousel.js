@@ -4,6 +4,7 @@ class ScrollCarousel extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.classList.remove('no-js');
 		this.track = this.querySelector('.scroll-track');
 		this.prevBtn = this.querySelector('.prev');
 		this.nextBtn = this.querySelector('.next');
