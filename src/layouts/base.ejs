@@ -5,14 +5,14 @@
 	}
 
 	const baseUrl = 'https://agency.mlut.style';
-	let ogTitle = it.ogTitle || 'mlut agency';
-	let ogDescription = it.ogDescription || 'We help startups transition from a pet project to a full-fledged product at an early stage.';
+	let ogTitle = it.title || 'mlut agency';
+	let ogDescription = it.ogDescription || 'Мы помогаем стартапам на ранней стадии перейти от личного проекта к полноценному продукту.';
 	let ogImage = it.ogImage || '/assets/img/og-main.png';
 	let ogType = it.ogType || 'website';
 	let ogUrl = it.ogUrl || '/';
 
-	const absImage = ogImage.startsWith('http') ? ogImage : baseUrl + ogImage;
-	const absUrl = ogUrl.startsWith('http') ? ogUrl : baseUrl + ogUrl;
+	const absImage = new URL(ogImage, baseUrl).href;
+	const absUrl   = new URL(ogUrl, baseUrl).href;
 %>
 
 <!DOCTYPE html>
@@ -27,12 +27,7 @@
 		<meta property="og:image" content="<%= absImage %>">
 		<meta property="og:url" content="<%= absUrl %>">
 		<meta property="og:type" content="<%= ogType %>">
-		<meta property="og:site_name" content="agency.mlut.style">
-
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="<%= ogTitle %>">
-		<meta name="twitter:description" content="<%= ogDescription %>">
-		<meta name="twitter:image" content="<%= absImage %>">
+		<meta property="og:site_name" content="mlut agency">
 
 		<link rel="stylesheet" href="/assets/style/style.min.css">
 		<link rel="icon" href="/assets/img/favicon.png?v=1" type="image/x-icon">
