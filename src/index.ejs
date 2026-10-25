@@ -166,7 +166,7 @@ area: 'main'
 <process-scroll class="D-f Fld-c Gap2.5u W100p P5u;4u md_Gap10u md_P0;0;0;15u xl_P0;0;0;20u xxl_P0;0;0;25u">
 	<h2 class="M0 P2.5u;0 Fns6u Fnw-n Lnh-n Fnst-n C-$accent900 md_Fns8u xxl_Fns11u">Как мы работаем</h2>
 
-	<ul class="track -All-sr D-f Ai-c Jc-st Gap2u Ovx-s process-track Mr-4u md_M0">
+	<ul class="track -All-sr D-f Ai-c Jc-st Gap2u md_Gap3u Ovx-s process-track Mr-4u md_M0">
 		<% for (let step of it.processSteps) { %>
 			<%- include('_includes/components/card-process.ejs',{
 				name: step.name,
@@ -256,3 +256,4 @@ area: 'main'
 <script src="/assets/script/scroll-carousel.js" type="module"></script>
 <script src="/assets/script/process-scroll.js" type="module"></script>
 <script src="/assets/script/faq-item.js" type="module"></script>
+<script src="/assets/script/process-animation.js" type="module"></script>
