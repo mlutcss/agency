@@ -80,3 +80,32 @@ html {
 	flex: 0 0 auto;
 	scroll-snap-align: start;
 }
+
+/* Контейнер — создаём 3D-сцену */
+.hero-decor {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg);
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+/* Каждый слой — вынесен в 3D на свою глубину */
+.hero-decor > .tilt-layer {
+  transform: translateZ(calc(var(--depth, 0) * 1px));
+  transform-style: preserve-3d;
+}
+
+/* Не трогаем тач и режим уменьшенной анимации */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .hero-decor {
+    perspective: none;
+    transform: none !important;
+    transform-style: flat;
+    transition: none;
+  }
+  .hero-decor > .tilt-layer {
+    transform: none;
+  }
+}
