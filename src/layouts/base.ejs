@@ -3,6 +3,16 @@
 	if (it.area === "main"){
 		cssHeaderLogoVisibility = "Vs-h O0"
 	}
+
+	const baseUrl = 'https://agency.mlut.style';
+	let ogTitle = it.title || 'mlut agency - digital-агентство для стартапов';
+	let ogDescription = it.ogDescription || 'Помогаем стартапам перейти от пет-проекта до полноценного продукта на ранней стадии';
+	let ogImage = it.ogImage || '/assets/img/og-main.jpg';
+	let ogType = it.ogType || 'website';
+	let ogUrl = it.ogUrl || '/';
+
+	const absImage = new URL(ogImage, baseUrl).href;
+	const absUrl   = new URL(ogUrl, baseUrl).href;
 %>
 
 <!DOCTYPE html>
@@ -10,7 +20,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>mlut agency</title>
+		<title><%= ogTitle %></title>
+
+		<meta property="og:title" content="<%= ogTitle %>">
+		<meta property="og:description" content="<%= ogDescription %>">
+		<meta property="og:image" content="<%= absImage %>">
+		<meta property="og:url" content="<%= absUrl %>">
+		<meta property="og:type" content="<%= ogType %>">
+		<meta property="og:site_name" content="mlut agency">
+
 		<link rel="stylesheet" href="/assets/style/style.min.css">
 		<link rel="icon" href="/assets/img/favicon.png?v=1" type="image/x-icon">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
