@@ -2,14 +2,10 @@ const heroSection = document.querySelector('#hero-section');
 const footer = document.querySelector('#footer');
 const logo = document.querySelector('#header-logo');
 
-let anyVisible = false;
+const visibility = { hero: false, footer: false };
 
-function handleIntersect(entries) {
-	entries.forEach((entry) => {
-		if (entry.target === heroSection || entry.target === footer) {
-			anyVisible = entry.isIntersecting;
-		}
-	});
+function updateLogo() {
+	const anyVisible = visibility.hero || visibility.footer;
 
 	if (anyVisible) {
 		logo.style.opacity = 0;
@@ -22,10 +18,24 @@ function handleIntersect(entries) {
 	}
 }
 
+function handleIntersect(entries) {
+	entries.forEach((entry) => {
+		if (entry.target === heroSection) {
+			visibility.hero = entry.isIntersecting;
+		}
+
+		if (entry.target === footer) {
+			visibility.footer = entry.isIntersecting;
+		}
+	});
+
+	updateLogo();
+}
+
 function createObserver() {
 	const options = {
 		root: null,
-		threshold: '0.85',
+		threshold: '0.3',
 		rootMargin: '0px',
 	};
 
