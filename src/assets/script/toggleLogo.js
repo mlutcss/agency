@@ -2,8 +2,6 @@ const heroSection = document.querySelector('#hero-section');
 const footer = document.querySelector('#footer');
 const logo = document.querySelector('#header-logo');
 
-let anyVisible = false;
-
 function isInViewport(el) {
 	if (!el) {
 		return false;
@@ -15,9 +13,7 @@ function isInViewport(el) {
 }
 
 function handleIntersect() {
-	anyVisible = isInViewport(heroSection) || isInViewport(footer);
-
-	if (anyVisible) {
+	if (isInViewport(heroSection) || isInViewport(footer)) {
 		logo.style.opacity = 0;
 		setTimeout(() => {
 			logo.style.visibility = 'hidden';
