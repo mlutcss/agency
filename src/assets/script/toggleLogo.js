@@ -2,10 +2,20 @@ const heroSection = document.querySelector('#hero-section');
 const footer = document.querySelector('#footer');
 const logo = document.querySelector('#header-logo');
 
-const visibility = { hero: false, footer: false };
+let anyVisible = false;
 
-function updateLogo() {
-	const anyVisible = visibility.hero || visibility.footer;
+function isInViewport(el) {
+	if (!el) {
+		return false;
+	}
+
+	const rect = el.getBoundingClientRect();
+
+	return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+function handleIntersect() {
+	anyVisible = isInViewport(heroSection) || isInViewport(footer);
 
 	if (anyVisible) {
 		logo.style.opacity = 0;
@@ -18,36 +28,12 @@ function updateLogo() {
 	}
 }
 
-function handleIntersect(entries) {
-	entries.forEach((entry) => {
-		if (entry.target === heroSection) {
-			visibility.hero = entry.isIntersecting;
-		}
+const observer = new IntersectionObserver(handleIntersect, { threshold: 0 });
 
-		if (entry.target === footer) {
-			visibility.footer = entry.isIntersecting;
-		}
-	});
-
-	updateLogo();
+if (heroSection) {
+	observer.observe(heroSection);
 }
 
-function createObserver() {
-	const options = {
-		root: null,
-		threshold: '0.3',
-		rootMargin: '0px',
-	};
-
-	const observer = new IntersectionObserver(handleIntersect, options);
-
-	if (heroSection) {
-		observer.observe(heroSection);
-	}
-
-	if (footer) {
-		observer.observe(footer);
-	}
+if (footer) {
+	observer.observe(footer);
 }
-
-createObserver();
