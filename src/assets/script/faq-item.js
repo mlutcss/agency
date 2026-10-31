@@ -8,18 +8,19 @@ class FaqItem extends HTMLElement {
 		this._text = this.querySelector('.text');
 		this._svg = this.querySelector('.arrow');
 		this._activeClass = this.getAttribute('active-css') || '';
-		this._onClick = () => this.toggle();
+		this._isOpen = false;
+
 		this.close();
-		this.addEventListener('click', this._onClick);
+		this.addEventListener('click', this.toggle);
 	}
 
-	toggle() {
-		if (this.isOpen()) {
+	toggle = () => {
+		if (this._isOpen) {
 			this.close();
 		} else {
 			this.open();
 		}
-	}
+	};
 
 	open() {
 		const section = this.closest('#faq-section');
@@ -32,26 +33,17 @@ class FaqItem extends HTMLElement {
 			});
 		}
 
-		if (this._activeClass) {
-			this.classList.add(this._activeClass);
-		}
-
+		this._isOpen = true;
+		this.classList.add(this._activeClass);
 		this._svg?.classList.add('-Rt180d');
 		this._text?.classList.remove('D-n');
 	}
 
 	close() {
-		if (this._activeClass) {
-			this.classList.remove(this._activeClass);
-		}
-
+		this._isOpen = false;
+		this.classList.remove(this._activeClass);
 		this._svg?.classList.remove('-Rt180d');
 		this._text?.classList.add('D-n');
-
-	}
-
-	isOpen() {
-		return this._activeClass ? this.classList.contains(this._activeClass) : !this._text?.classList.contains('D-n');
 	}
 }
 
