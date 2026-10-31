@@ -80,3 +80,30 @@ html {
 	flex: 0 0 auto;
 	scroll-snap-align: start;
 }
+
+hero-tilt {
+	perspective: 1200px;
+	perspective-origin: 50% 50%;
+	transform-style: preserve-3d;
+	transform: rotateX(0deg) rotateY(0deg);
+	transition: transform 0.15s ease-out;
+	will-change: transform;
+}
+
+.tilt-layer {
+	transform: translateZ(var(--ml-depth));
+	transform-style: preserve-3d;
+}
+
+/* Не трогаем тач и режим уменьшенной анимации */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+	hero-tilt {
+		perspective: none;
+		transform: none !important;
+		transform-style: flat;
+		transition: none;
+	}
+	.tilt-layer {
+		transform: none;
+	}
+}
