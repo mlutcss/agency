@@ -2,16 +2,18 @@ const heroSection = document.querySelector('#hero-section');
 const footer = document.querySelector('#footer');
 const logo = document.querySelector('#header-logo');
 
-let anyVisible = false;
+function isInViewport(el) {
+	if (!el) {
+		return false;
+	}
 
-function handleIntersect(entries) {
-	entries.forEach((entry) => {
-		if (entry.target === heroSection || entry.target === footer) {
-			anyVisible = entry.isIntersecting;
-		}
-	});
+	const rect = el.getBoundingClientRect();
 
-	if (anyVisible) {
+	return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+function handleIntersect() {
+	if (isInViewport(heroSection) || isInViewport(footer)) {
 		logo.style.opacity = 0;
 		setTimeout(() => {
 			logo.style.visibility = 'hidden';
@@ -22,22 +24,12 @@ function handleIntersect(entries) {
 	}
 }
 
-function createObserver() {
-	const options = {
-		root: null,
-		threshold: '0.85',
-		rootMargin: '0px',
-	};
+const observer = new IntersectionObserver(handleIntersect, { threshold: 0 });
 
-	const observer = new IntersectionObserver(handleIntersect, options);
-
-	if (heroSection) {
-		observer.observe(heroSection);
-	}
-
-	if (footer) {
-		observer.observe(footer);
-	}
+if (heroSection) {
+	observer.observe(heroSection);
 }
 
-createObserver();
+if (footer) {
+	observer.observe(footer);
+}

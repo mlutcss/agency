@@ -8,7 +8,7 @@
 			{ "src": "Ellipse36", "styles": "T20p L15p md_T9p" },
 			{ "src": "Ellipse37", "styles": "T20p L11p md_T11p" },
 			{ "src": "Ellipse38", "styles": "T30p L10p md_T24p" },
-			{ "src": "Ellipse39", "styles": "T34p L8p md_T31p" },
+			{ "src": "Ellipse39", "styles": "T34p L9p md_T31p" },
 			{ "src": "Ellipse65", "styles": "T41p L8p" },
 			{ "src": "Ellipse66", "styles": "T41p L11p" },
 			{ "src": "Ellipse67", "styles": "T41p L10p" },
@@ -22,14 +22,14 @@
 		"text": "Составляем подробный план действий",
 		"img": [
 			{ "src": "Ellipse40", "styles": "T19p L9p md_T8p" },
-			{ "src": "Ellipse41", "styles": "T20p L15p md_T9p" },
+			{ "src": "Ellipse41", "styles": "T20p L12p md_T9p" },
 			{ "src": "Ellipse42", "styles": "T21p L11p md_T13p" },
-			{ "src": "Ellipse43", "styles": "T28p L10p md_T24p" },
-			{ "src": "Ellipse44", "styles": "T34p L8p md_T31p" },
+			{ "src": "Ellipse43", "styles": "T28p L9p md_T24p" },
+			{ "src": "Ellipse44", "styles": "T34p L9p md_T31p" },
 			{ "src": "Ellipse70", "styles": "T41p L8p" },
 			{ "src": "Ellipse71", "styles": "T41p L12p" },
-			{ "src": "Ellipse72", "styles": "T41p L10p" },
-			{ "src": "Ellipse73", "styles": "T41p L10p" },
+			{ "src": "Ellipse72", "styles": "T40p L9p" },
+			{ "src": "Ellipse73", "styles": "T40p L9p" },
 			{ "src": "Ellipse74", "styles": "T40p L8p" }
 		]
 	},
@@ -40,14 +40,14 @@
 		"img": [
 			{ "src": "Ellipse45", "styles": "T16p L9p md_T6p" },
 			{ "src": "Ellipse46", "styles": "T20p L12p md_T9p" },
-			{ "src": "Ellipse47", "styles": "T19p L5p md_T10p" },
+			{ "src": "Ellipse47", "styles": "T19p L8p md_T10p" },
 			{ "src": "Ellipse48", "styles": "T30p L10p md_T24p" },
 			{ "src": "Ellipse49", "styles": "T34p L8p md_T32p" },
 			{ "src": "Ellipse75", "styles": "T40p L9p" },
 			{ "src": "Ellipse76", "styles": "T41p L12p" },
 			{ "src": "Ellipse77", "styles": "T41p L10p" },
 			{ "src": "Ellipse78", "styles": "T41p L10p" },
-			{ "src": "Ellipse79", "styles": "T40p L8p" }
+			{ "src": "Ellipse79", "styles": "T40p L9p" }
 		]
 	},
 	{
@@ -55,15 +55,15 @@
 		"title": "Продающий сайт",
 		"text": "Создаем продающий сайт с индивидуальным дизайном",
 		"img": [
-			{ "src": "Ellipse50", "styles": "T19p L9p md_T9p" },
-			{ "src": "Ellipse51", "styles": "T18p L11p md_T9p" },
-			{ "src": "Ellipse52", "styles": "T23p L8p md_T16p md_L6p" },
-			{ "src": "Ellipse53", "styles": "T29p L10p md_T24p" },
-			{ "src": "Ellipse54", "styles": "T34p L8p md_T32p" },
+			{ "src": "Ellipse50", "styles": "T19p L8p md_T9p" },
+			{ "src": "Ellipse51", "styles": "T18p L9p md_T9p" },
+			{ "src": "Ellipse52", "styles": "T23p L9p md_T16p md_L8p" },
+			{ "src": "Ellipse53", "styles": "T29p L9p md_T24p" },
+			{ "src": "Ellipse54", "styles": "T34p L8p md_T31p" },
 			{ "src": "Ellipse80", "styles": "T40p L8p md_L10p" },
-			{ "src": "Ellipse81", "styles": "T41p L12p" },
-			{ "src": "Ellipse82", "styles": "T41p L10p" },
-			{ "src": "Ellipse83", "styles": "T41p L10p" },
+			{ "src": "Ellipse81", "styles": "T41p L11p" },
+			{ "src": "Ellipse82", "styles": "T41p L9p" },
+			{ "src": "Ellipse83", "styles": "T41p L9p" },
 			{ "src": "Ellipse84", "styles": "T40p L8p" }
 		]
 	},
@@ -73,14 +73,14 @@
 		"text": "Помогаем клиенту закрыть оставшиеся пункты чеклиста",
 		"img": [
 			{ "src": "Ellipse55", "styles": "T18p L9p md_T5p" },
-			{ "src": "Ellipse56", "styles": "T18p L11p md_T9p" },
-			{ "src": "Ellipse57", "styles": "T23p L8p md_T14p md_L6p" },
+			{ "src": "Ellipse56", "styles": "T18p L10p md_T9p" },
+			{ "src": "Ellipse57", "styles": "T23p L8p md_T14p md_L8p" },
 			{ "src": "Ellipse58", "styles": "T30p L10p md_T21p" },
-			{ "src": "Ellipse90", "styles": "T34p L8p md_T32p" },
+			{ "src": "Ellipse90", "styles": "T34p L9p md_T32p" },
 			{ "src": "Ellipse85", "styles": "T41p L8p md_L10p" },
-			{ "src": "Ellipse86", "styles": "T41p L12p" },
-			{ "src": "Ellipse87", "styles": "T41p L10p" },
-			{ "src": "Ellipse88", "styles": "T41p L10p" },
+			{ "src": "Ellipse86", "styles": "T41p L11p" },
+			{ "src": "Ellipse87", "styles": "T41p L9p" },
+			{ "src": "Ellipse88", "styles": "T41p L9p" },
 			{ "src": "Ellipse89", "styles": "T40p L8p" }
 		]
 	},
@@ -90,15 +90,15 @@
 		"text": "При необходимости, помогаем клиенту с получением инвестиций/грантов/пилотов с корпорациями",
 		"img": [
 			{ "src": "Ellipse60", "styles": "T19p L9p md_T10p" },
-			{ "src": "Ellipse61", "styles": "T20p L11p md_T9p" },
+			{ "src": "Ellipse61", "styles": "T20p L10p md_T9p" },
 			{ "src": "Ellipse62", "styles": "T26p L8p md_T20p md_L6p" },
 			{ "src": "Ellipse63", "styles": "T28p L10p md_T21p" },
 			{ "src": "Ellipse64", "styles": "T34p L8p md_T32p" },
 			{ "src": "Ellipse91", "styles": "T41p L8p md_L10p" },
-			{ "src": "Ellipse91", "styles": "T41p L12p" },
-			{ "src": "Ellipse93", "styles": "T40p L10p" },
-			{ "src": "Ellipse94", "styles": "T41p L10p" },
-			{ "src": "Ellipse95", "styles": "T40p L8p" }
+			{ "src": "Ellipse91", "styles": "T42p L9p" },
+			{ "src": "Ellipse93", "styles": "T40p L8p" },
+			{ "src": "Ellipse94", "styles": "T41p L8p" },
+			{ "src": "Ellipse95", "styles": "T40p L7p" }
 		]
 	}
 ]
