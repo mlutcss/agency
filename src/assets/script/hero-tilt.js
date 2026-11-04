@@ -19,8 +19,19 @@ class HeroTilt extends HTMLElement {
 			return;
 		}
 
-		this.addEventListener('mousemove', this.onMove);
-		this.addEventListener('mouseleave', this.onLeave);
+		this.trigger = this.closest('section') || this;
+		this.trigger.addEventListener('mousemove', this.onMove);
+		this.trigger.addEventListener('mouseleave', this.onLeave);
+	}
+
+	disconnectedCallback() {
+		this.trigger.removeEventListener('mousemove', this.onMove);
+		this.trigger.removeEventListener('mouseleave', this.onLeave);
+
+		if (this.raf) {
+			cancelAnimationFrame(this.raf);
+			this.raf = null;
+		}
 	}
 
 	apply = () => {
@@ -30,7 +41,7 @@ class HeroTilt extends HTMLElement {
 			return;
 		}
 
-		const rect = this.getBoundingClientRect();
+		const rect = this.trigger.getBoundingClientRect();
 		// Нормализуем позицию курсора: -0.5..0.5 относительно центра
 		const nx = (this.lastX - rect.left) / rect.width - 0.5;
 		const ny = (this.lastY - rect.top) / rect.height - 0.5;
