@@ -1,4 +1,10 @@
 class FaqItem extends HTMLElement {
+	static openedItem = null;
+
+	constructor() {
+		super();
+	}
+
 	connectedCallback() {
 		this.classList.remove('no-js');
 		this.wrap = this.querySelector('.expand-wrap');
@@ -6,7 +12,6 @@ class FaqItem extends HTMLElement {
 		this.activeClass = this.getAttribute('active-css');
 
 		this.isOpen = false;
-		this.wrap.classList.add('H0');
 		this.addEventListener('click', this.toggle);
 
 		this._onTransitionEnd = (e) => {
@@ -18,10 +23,14 @@ class FaqItem extends HTMLElement {
 		};
 
 		this.wrap.addEventListener('transitionend', this._onTransitionEnd);
-
 	}
 
 	disconnectedCallback() {
+		if (FaqItem.openedItem === this) {
+			FaqItem.openedItem = null;
+		}
+
+		this.removeEventListener('click', this.toggle);
 		this.wrap?.removeEventListener('transitionend', this._onTransitionEnd);
 	}
 
@@ -34,16 +43,11 @@ class FaqItem extends HTMLElement {
 	};
 
 	open() {
-		const section = this.closest('#faq-section');
-
-		if (section) {
-			section.querySelectorAll('faq-item').forEach((item) => {
-
-				if (item !== this) {
-					item.close();
-				}
-			});
+		if (FaqItem.openedItem && FaqItem.openedItem !== this) {
+			FaqItem.openedItem.close();
 		}
+
+		FaqItem.openedItem = this;
 
 		this.isOpen = true;
 		this.classList.add(this.activeClass);
@@ -52,6 +56,10 @@ class FaqItem extends HTMLElement {
 	}
 
 	close() {
+		if (FaqItem.openedItem === this) {
+			FaqItem.openedItem = null;
+		}
+
 		this.isOpen = false;
 		this.classList.remove(this.activeClass);
 		this.svg?.classList.remove('-Rt180d');
@@ -70,7 +78,7 @@ class FaqItem extends HTMLElement {
 
 		const endHeight = this.wrap.getBoundingClientRect().height;
 		this.wrap.style.height = startHeight + 'px';
-		//Это принудительный reflow — трюк, чтобы браузер применил предыдущее изменение стилей до следующего.
+		// Это принудительный reflow — трюк, чтобы браузер применил предыдущее изменение стилей до следующего.
 		// Без него анимация не запустится.
 		void this.wrap.offsetHeight;
 
