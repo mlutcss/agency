@@ -1,7 +1,7 @@
 class HeroTilt extends HTMLElement {
 	constructor() {
 		super();
-		this.maxRotateX = 10; // градусов по вертикали
+		this.maxRotateX = 8; // градусов по вертикали
 		this.maxRotateY = 15; // градусов по горизонтали
 		this.raf = null;
 		this.lastX = 0;
@@ -19,7 +19,7 @@ class HeroTilt extends HTMLElement {
 			return;
 		}
 
-		this.trigger = this.closest('section') || this;
+		this.trigger = this.closest('.hero-trigger') || this;
 		this.trigger.addEventListener('mousemove', this.onMove);
 		this.trigger.addEventListener('mouseleave', this.onLeave);
 	}
@@ -47,8 +47,8 @@ class HeroTilt extends HTMLElement {
 		const ny = (this.lastY - rect.top) / rect.height - 0.5;
 		// Курсор справа → положительный rotateY (правый край отходит назад)
 		// Курсор снизу → отрицательный rotateX (низ отходит назад)
-		const rotY = nx * 2 * this.maxRotateY;
-		const rotX = -ny * 2 * this.maxRotateX;
+		const rotY = -nx * 2 * this.maxRotateY;
+		const rotX = ny * 2 * this.maxRotateX;
 
 		this.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
 	};

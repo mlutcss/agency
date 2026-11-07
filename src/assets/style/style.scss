@@ -102,8 +102,10 @@ hero-tilt {
 		transform: none !important;
 		transform-style: flat;
 		transition: none;
+		will-change: auto;
 	}
 	.tilt-layer {
 		transform: none;
+		will-change: auto;
 	}
 }
