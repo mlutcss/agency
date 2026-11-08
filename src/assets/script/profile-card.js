@@ -7,7 +7,7 @@ class ProfileCard extends HTMLElement {
 		this.wrap = this.querySelector('.expand-wrap');
 		this.btn = this.querySelector('.expand-btn');
 		this.btnText = this.btn.textContent;
-		this.context = this.getAttribute('class-context');
+		this.concealCss = this.getAttribute('conceal-css');
 		this.expanded = false;
 		this._applyJsReadyClasses();
 		this.btn.addEventListener('click', this.toggle);
@@ -29,7 +29,7 @@ class ProfileCard extends HTMLElement {
 	}
 
 	_applyJsReadyClasses() {
-		this.classList.add(this.context);
+		this.classList.add(this.concealCss);
 		this.btn.classList.remove('D-n');
 	}
 
@@ -40,10 +40,10 @@ class ProfileCard extends HTMLElement {
 		this.wrap.style.transition = 'none';
 
 		if (this.expanded) {
-			this.classList.remove(this.context);
+			this.classList.remove(this.concealCss);
 			this.wrap.style.height = 'auto';
 		} else {
-			this.classList.add(this.context);
+			this.classList.add(this.concealCss);
 			this.wrap.style.height = '';
 		}
 
