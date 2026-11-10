@@ -22,18 +22,18 @@ class CardAnimator {
 		this.card = card;
 		this.images = [...card.querySelectorAll('.arc-line')];
 
-		if (this.images.length === 0) {
-			return;
-		}
-
 		this.sprites = [];
 		this.visible = false;
 		this.ready = false;
 		this._rafId = null;
 		this._completed = 0;
+		this._firstRender = false;
+		this._disposed = false;
+		this._lastMeasure = 0;
 
 		Promise.all(this.images.map((img) => this._waitForImage(img)))
-			.then(() => this._setup());
+			.then(() => this._waitForLayout())
+			.then(() => this._initScene());
 	}
 
 	_waitForImage(img) {
@@ -47,7 +47,28 @@ class CardAnimator {
 		});
 	}
 
-	_setup() {
+	_waitForLayout() {
+		// window.load + два кадра, чтобы layout устоялся.
+		return new Promise((resolve) => {
+			const onLoad = () => {
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => resolve());
+				});
+			};
+
+			if (document.readyState === 'complete') {
+				onLoad();
+			} else {
+				window.addEventListener('load', onLoad, { once: true });
+			}
+		});
+	}
+
+	_initScene() {
+		if (this._disposed) {
+			return;
+		}
+
 		if (getComputedStyle(this.card).position === 'static') {
 			this.card.style.position = 'relative';
 		}
@@ -114,17 +135,59 @@ class CardAnimator {
 		this.camera.position.z = 100;
 
 		// ---------- Загрузка текстур ----------
+		this._loadTextures(cardRect);
+
+		// ---------- Видимость ----------
+		this.observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((e) => {
+					this.visible = e.isIntersecting;
+
+					if (this.visible) {
+						this._startAnimation();
+					} else {
+						this._stopAnimation();
+					}
+				});
+			},
+			{ rootMargin: '-10px 0px', threshold: 0 }
+		);
+		this.observer.observe(this.card);
+
+		// ---------- Ресайз через ResizeObserver ----------
+		this._ro = new ResizeObserver(() => this._recomputeSprites(false));
+		this._ro.observe(this.card);
+
+		// ---------- bfcache ----------
+		// При возврате назад по кнопке браузера layout мог пересчитаться.
+		// window.resize в этом случае не срабатывает — пересчитываем вручную.
+		this._onPageShow = (e) => {
+			if (e.persisted) {
+				requestAnimationFrame(() => {
+					this._recomputeSprites(true);
+					this._startAnimation();
+				});
+			}
+		};
+
+		window.addEventListener('pageshow', this._onPageShow);
+
+		// ---------- Часы ----------
+		this.clock = new three.Clock();
+	}
+
+	_loadTextures(cardRect) {
 		const loader = new three.TextureLoader();
 
 		this.images.forEach((img, i) => {
-			const settled = () => {
-				this._completed++;
-				this._maybeReady();
-			};
-
 			loader.load(
 				img.src,
 				(texture) => {
+					if (this._disposed) {
+						texture.dispose();
+						return;
+					}
+
 					texture.colorSpace = three.SRGBColorSpace;
 					texture.minFilter = three.LinearFilter;
 					texture.magFilter = three.LinearFilter;
@@ -153,44 +216,20 @@ class CardAnimator {
 
 					this.scene.add(sprite);
 					this.sprites.push(sprite);
-					img.style.visibility = 'hidden';
-					settled();
+
+					// Оригинал скрываем не здесь — а после первого render()
+					this._completed++;
+					this._maybeReady();
 				},
 				undefined,
 				() => {
 					console.warn('[CardAnimator] failed to load texture:', img.src);
 					img.style.visibility = '';
-					settled();
+					this._completed++;
+					this._maybeReady();
 				}
 			);
 		});
-
-		// ---------- Видимость ----------
-		this.observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((e) => {
-					this.visible = e.isIntersecting;
-
-					if (this.visible) {
-						this._startAnimation();
-					} else {
-						this._stopAnimation();
-					}
-				});
-			},
-			{
-				rootMargin: '-10px 0px',
-				threshold: 0,
-			}
-		);
-		this.observer.observe(this.card);
-
-		// ---------- Ресайз ----------
-		this._onResize = () => this._handleResize();
-		window.addEventListener('resize', this._onResize);
-
-		// ---------- Часы ----------
-		this.clock = new three.Clock();
 	}
 
 	_maybeReady() {
@@ -214,10 +253,15 @@ class CardAnimator {
 		};
 	}
 
-	_handleResize() {
+	_recomputeSprites(force) {
+		if (this._disposed || !this.renderer) {
+			return;
+		}
+
 		const cardRect = this.card.getBoundingClientRect();
 
 		if (
+			!force &&
 			Math.abs(cardRect.width - this.cardW) < 0.5 &&
 			Math.abs(cardRect.height - this.cardH) < 0.5
 		) {
@@ -266,8 +310,13 @@ class CardAnimator {
 		}
 	}
 
-	_animate = () => {
+	_animate = (time) => {
 		this._rafId = null;
+
+		if (this._disposed) {
+			return;
+		}
+
 		const t = this.clock.getElapsedTime();
 
 		for (let i = 0; i < this.sprites.length; i++) {
@@ -283,13 +332,83 @@ class CardAnimator {
 		}
 
 		this.renderer.render(this.scene, this.camera);
+
+		// Скрываем оригиналы только после первого отрисованного кадра
+		if (!this._firstRender) {
+			this._firstRender = true;
+			this.sprites.forEach((s) => {
+				if (s.userData && s.userData.img) {
+					s.userData.img.style.visibility = 'hidden';
+				}
+			});
+		}
+
+		// Safety-net: раз в 500 мс проверяем, не сдвинулся ли layout
+		if (time - this._lastMeasure > 500) {
+			this._lastMeasure = time;
+			this._recomputeSprites(true);
+		}
+
 		this._rafId = requestAnimationFrame(this._animate);
 	};
+
+	dispose() {
+		if (this._disposed) {
+			return;
+		}
+
+		this._disposed = true;
+
+		if (this._rafId !== null) {
+			cancelAnimationFrame(this._rafId);
+			this._rafId = null;
+		}
+
+		if (this._ro) {
+			this._ro.disconnect();
+			this._ro = null;
+		}
+
+		if (this.observer) {
+			this.observer.disconnect();
+			this.observer = null;
+		}
+
+		window.removeEventListener('pageshow', this._onPageShow);
+
+		// Возвращаем оригинальные картинки
+		this.images.forEach((img) => {
+			img.style.visibility = '';
+		});
+
+		// Освобождаем GPU-ресурсы
+		this.sprites.forEach((sprite) => {
+			if (sprite.material) {
+				if (sprite.material.map) {
+					sprite.material.map.dispose();
+				}
+
+				sprite.material.dispose();
+			}
+		});
+		this.sprites = [];
+
+		if (this.renderer) {
+			this.renderer.dispose();
+			this.renderer = null;
+		}
+
+		if (this.overlay && this.overlay.parentNode) {
+			this.overlay.parentNode.removeChild(this.overlay);
+			this.overlay = null;
+		}
+	}
 }
 
 function init() {
-	document.querySelectorAll('.process-card')
-		.forEach((card) => new CardAnimator(card));
+	document.querySelectorAll('.process-card').forEach((card) => {
+		new CardAnimator(card);
+	});
 }
 
 if (document.readyState === 'loading') {
